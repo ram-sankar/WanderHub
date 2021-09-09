@@ -73,9 +73,9 @@ function Profile({navigation}) {
     <AppScreen style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.topHeadingContainer}>
-          <BackButton style={styles.backButton} navigation={navigation}/>
+          <BackButton style={styles.backButton}/>
           <AppText style={[defaultStyles.headingText, styles.heading]}>Profile</AppText>
-          <Avatar source={mocks.profile.avatar} navigation={navigation}/>
+          <Avatar source={mocks.profile.avatar}/>
         </View>
         
         <RenderEditableContent title='Username' content={username} shouldEnableEdit={true} onChange={setUsername}/>

@@ -63,7 +63,7 @@ function Home({navigation}) {
     <AppScreen style={styles.container}>
       <View style={styles.topHeadingContainer}>
         <AppText style={[defaultStyles.headingText, styles.heading]}>Browse</AppText>
-        <Avatar source={mocks.profile.avatar} navigateTo="Profile" navigation={navigation}/>
+        <Avatar source={mocks.profile.avatar} navigateTo="Profile" />
       </View>
       <View style={styles.tabContainer}>
         {tabHeaders.map(tab => renderTab(tab))}

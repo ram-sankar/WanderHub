@@ -1,14 +1,11 @@
 import React from "react";
 import { Image, TouchableOpacity, StyleSheet } from "react-native";
+import { NavigationContext } from '@react-navigation/native';
 
-function Avatar({ source, navigation, navigateTo="Profile", style }) {
-  const navigateToPage = () => {
-    if (navigateTo) {
-      return navigation.navigate(navigateTo);
-    } else {
-      return null;
-    }
-  }
+function Avatar({ source, navigateTo="Profile", style }) {
+  const navigation = React.useContext(NavigationContext);
+  const navigateToPage = () => navigateTo ? navigation.navigate(navigateTo) : null;
+
   return (
     <TouchableOpacity onPress={navigateToPage} style={style}>
         <Image source={source} style={styles.avatar} />

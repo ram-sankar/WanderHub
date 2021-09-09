@@ -56,7 +56,7 @@ function Login({navigation}) {
 
   return (
     <AppScreen style={styles.container}>
-      <BackButton navigation={navigation}/>
+      <BackButton/>
       <AppText style={defaultStyles.headingText}>Login</AppText>
       {loginForm}
       <AppText style={styles.forgotPassword}>Forgot your password?</AppText>

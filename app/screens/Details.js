@@ -8,15 +8,15 @@ import BackButton from "../components/BackButton";
 import { mocks } from "../constants";
 import { colors } from "../constants/theme";
 
-function Details({navigation}) {
+function Details() {
 
   const { products } = mocks;
 
   const TopSection = () => (
     <View>
       <Image style={styles.topImage} source={require('../assets/images/plants_1.png')} />
-      <BackButton style={styles.backButton} navigation={navigation} />
-      <Avatar style={styles.avatar} source={mocks.profile.avatar} navigation={navigation} />
+      <BackButton style={styles.backButton} />
+      <Avatar style={styles.avatar} source={mocks.profile.avatar} />
       
       <AppText style={styles.topText}>{products[0].name}</AppText>
       <AppText style={styles.description}>{products[0].description}</AppText>

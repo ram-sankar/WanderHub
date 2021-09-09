@@ -43,9 +43,9 @@ function Product({navigation, route: {params}}) {
   return (
     <AppScreen style={styles.container}>
       <View style={styles.topHeadingContainer}>
-        <BackButton style={styles.backButton} navigation={navigation}/>
+        <BackButton style={styles.backButton}/>
         <View style={styles.flex1}></View>
-        <Avatar source={mocks.profile.avatar} navigation={navigation}/>
+        <Avatar source={mocks.profile.avatar}/>
       </View>
       <View style={styles.imageContainer}>
         <Image source={mocks.images.plant} style={styles.image}/>
