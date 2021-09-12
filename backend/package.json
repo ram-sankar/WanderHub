@@ -1,7 +1,7 @@
 {
-  "name": "bench-workflow",
+  "name": "plan-me-a-trip",
   "version": "1.0.0",
-  "description": "Excel Management",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
