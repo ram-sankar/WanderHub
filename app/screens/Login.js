@@ -8,6 +8,8 @@ import BackButton from "../components/BackButton";
 import { ErrorMessage, Form, FormField, SubmitButton } from "../components/forms";
 import defaultStyles from "../constants/styles";
 import { colors, sizes } from "../constants/theme";
+import authApi from "../api/auth"
+import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -15,19 +17,25 @@ const validationSchema = Yup.object().shape({
 });
 
 function Login({navigation}) {
+  const auth = useAuth();
+  const [loginFailed, setLoginFailed] = useState(false);
 
-  const [loginFailed, setLoginFailed] = useState(false)
-  const handleSubmit = ({email, password}) => {
-    if (email==='arya@starks.com' && password==='NotToday') {
-      return navigation.navigate('Home')
-    } else {
-      setLoginFailed(true)
-    }
+  const handleSubmit = async ({email, password}) => {
+    const result = await authApi.login(email, password)
+    if(!result.ok) return setLoginFailed(true);
+    setLoginFailed(false);
+    auth.logIn(result.headers["x-auth-token"])
+
+    // if (email==='jonas@dark.com' && password==='martha') {
+    //   return navigation.navigate('Home')
+    // } else {
+    //   setLoginFailed(true)
+    // }
   }
 
   const loginForm = (
     <Form 
-        initialValues={{ email: "arya@starks.com", password: "NotToday" }}
+        initialValues={{ email: "jonas@dark.com", password: "martha" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
