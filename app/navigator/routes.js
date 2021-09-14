@@ -6,4 +6,7 @@ export default Object.freeze({
   REGISTER: "Register",
   WELCOME: "Welcome",
   HOME: "Home",
+  SEARCH: "Search",
+  PROFILE: "Profile",
+  FAVORITE: "Favorite",
 })

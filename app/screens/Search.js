@@ -4,11 +4,11 @@ import { View, StyleSheet } from "react-native";
 import AppScreen from "../components/AppScreen";
 import AppText from "../components/AppText";
 
-function Profile() {
+function Search() {
   return (
     <AppScreen style={styles.container}>
       <View>
-        <AppText>Profile</AppText>
+        <AppText>Search</AppText>
       </View>
     </AppScreen>
   )
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
-export default Profile;
+export default Search;
