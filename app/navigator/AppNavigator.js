@@ -7,6 +7,7 @@ import Home from '../screens/Home';
 import Search from "../screens/Search";
 import Profile from "../screens/Profile";
 import Favorite from "../screens/Favorite";
+import Explore from "../screens/Explore";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +41,14 @@ export default function AppNavigator() {
       }}  
     />
     <Tab.Screen 
+      name={routes.EXPLORE}
+      component={Explore}
+      options={{
+        tabBarIcon: ({color, size}) => 
+          <Ionicons name="compass" color={color} size={size} />
+      }}  
+    />
+    <Tab.Screen 
       name={routes.SEARCH}
       component={Search}
       options={{
@@ -52,7 +61,7 @@ export default function AppNavigator() {
       component={Favorite}
       options={{
         tabBarIcon: ({color, size}) => 
-          <Ionicons name="heart-outline" color={color} size={size} />
+          <Ionicons name="heart" color={color} size={size} />
       }}  
     />
     <Tab.Screen 

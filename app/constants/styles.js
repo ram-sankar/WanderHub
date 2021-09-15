@@ -3,7 +3,7 @@ import { colors } from "./theme";
 
 export default {
   text: {
-    color: colors.black,
+    color: colors.darkGrey,
     fontSize: 18,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
   },

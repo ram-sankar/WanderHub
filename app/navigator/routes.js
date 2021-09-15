@@ -9,4 +9,5 @@ export default Object.freeze({
   SEARCH: "Search",
   PROFILE: "Profile",
   FAVORITE: "Favorite",
+  EXPLORE: "Explore",
 })

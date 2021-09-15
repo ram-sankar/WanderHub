@@ -25,12 +25,6 @@ function Login({navigation}) {
     if(!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
     auth.logIn(result.headers["x-auth-token"])
-
-    // if (email==='jonas@dark.com' && password==='martha') {
-    //   return navigation.navigate('Home')
-    // } else {
-    //   setLoginFailed(true)
-    // }
   }
 
   const loginForm = (

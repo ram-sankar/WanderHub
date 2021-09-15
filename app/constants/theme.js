@@ -1,15 +1,20 @@
 const colors = {
-  accent: "#F3534A",
-  primary: "#0AC4BA",
-  secondary: "#2BDA8E",
+  primary: "#fca311",
+  lightPrimary: '#fcbf49',
+  darkPrimary: '#f77f00',
+  purple: "#7209b7",
   tertiary: "#FFE358",
   black: "#323643",
   white: "#FFFFFF",
+  darkGrey: '#14213d',
   gray: "#9DA3B4",
   gray2: "#C5CCD6",
-  appBackGround: '#f5f5f5',
+  gray3: "#959ba3",
+  gray5: "#575a5e",
+  appBackGround: '#f7f7f7',
   lightGreen: '#e1fce4',
   lightGreen2: '#ddffda',
+  red: '#ff0054',
   transparent: '#00000000'
 };
 
