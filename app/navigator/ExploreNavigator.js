@@ -4,7 +4,7 @@ import { getFocusedRouteNameFromRoute  } from '@react-navigation/native';
 
 import routes from './routes';
 import Explore from "../screens/Explore";
-import PlanDetails from '../screens/PlanDetails'
+import PlanDetails from '../screens/Explore/PlanDetails'
 import styles from "../constants/styles";
 
 const ExploreStack = createNativeStackNavigator();
