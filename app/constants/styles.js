@@ -19,5 +19,18 @@ export default {
     fontWeight: '700',
     fontSize: sizes.fontHeading,
     marginBottom: 30
+  },
+  tabBarStyle: {
+    position: 'absolute',
+    bottom: 10,
+    left: 20,
+    right: 20,
+    borderRadius: 30,
+    height: 50,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 2,
   }
 };

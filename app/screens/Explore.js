@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView, Image, Pressable, Keyboard, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
+import { NavigationContext } from '@react-navigation/native';
 
 import AppScreen from "../components/AppScreen";
 import AppText from "../components/AppText";
 import TextInput from "../components/TextInput";
 import { colors, sizes } from "../constants/theme";
 import { numberWithCommas } from "../common/helperFunctions";
+import routes from "../navigator/routes";
 
 const screenWidth = Dimensions.get('window').width;
 
 function Explore() {
+  const navigation = React.useContext(NavigationContext);
   const [searchText, setSearchText] = useState('');
   const mockData = [
     {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
@@ -26,7 +29,7 @@ function Explore() {
 
   const RenderList = () => (
     mockData.map((item, index) => (
-      <Pressable onPress={onSearchIconClick} style={styles.listItem} key={index}>
+      <Pressable onPress={() => navigation.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem} key={index}>
         <Image 
           source={item.image}
           key={index}

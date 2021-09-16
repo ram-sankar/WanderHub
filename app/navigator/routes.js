@@ -1,7 +1,6 @@
 export default Object.freeze({
   ACCOUNT: "Account",
   FEED: "Feed",
-  LISTING_DETAILS: "ListingDetails",
   LOGIN: "Login",
   REGISTER: "Register",
   WELCOME: "Welcome",
@@ -9,5 +8,7 @@ export default Object.freeze({
   SEARCH: "Search",
   PROFILE: "Profile",
   FAVORITE: "Favorite",
-  EXPLORE: "Explore",
+  EXPLORE_TAB: "ExploreTab",
+  EXPLORE_SCREEN: "ExploreScreen",
+  PLAN_DETAILS: "PlanDetails",
 })
