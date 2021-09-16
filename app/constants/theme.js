@@ -22,6 +22,9 @@ const sizes = {
   // global sizes
   base: 16,
   font: 14,
+  fontMainHeading: 22,
+  fontHeading: 18,
+  fontSubHeading: 16,
   radius: 6,
   padding: 10,
 

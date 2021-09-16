@@ -1,82 +1,79 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Image, Pressable } from "react-native";
+import { View, StyleSheet, ScrollView, Image, Pressable, Keyboard, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 
 import AppScreen from "../components/AppScreen";
 import AppText from "../components/AppText";
 import TextInput from "../components/TextInput";
-import { colors } from "../constants/theme";
+import { colors, sizes } from "../constants/theme";
+import { numberWithCommas } from "../common/helperFunctions";
+
+const screenWidth = Dimensions.get('window').width;
 
 function Explore() {
   const [searchText, setSearchText] = useState('');
   const mockData = [
-    {id: 1, title: 'Kudremuka', day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 2, title: 'Kudremuka', day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 3, title: 'Kudremuka', day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 4, title: 'Kudremuka', day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+    {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+    {id: 2, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+    {id: 3, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+    {id: 4, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/explore_1.png"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
   ]
 
   const onSearchIconClick = () => {
+    Keyboard.dismiss();
     console.log(searchText);
   }
 
-  const SearchBox = () => (
-    <View style={styles.searchBoxContainer}>
-      <TextInput 
-        onChangeText={(setSearchText)}
-        value={searchText}
-        width={'90%'}
-        placeholder="Explore plans for city"
-        style={styles.textInputStyling}
-        containerStyling={styles.textInputContainerStyling}/>
-      <Pressable onPress={onSearchIconClick}>
-        <Ionicons name="search-outline" size={30} />
+  const RenderList = () => (
+    mockData.map((item, index) => (
+      <Pressable onPress={onSearchIconClick} style={styles.listItem} key={index}>
+        <Image 
+          source={item.image}
+          key={index}
+          style={styles.listImage}
+        />
+        <View style={styles.listBody}>
+          <AppText style={styles.listTitle}>{item.title}</AppText>
+          <View style={styles.listTopSection}>
+            <View style={styles.titleContainer}>
+              <AppText style={styles.listDay}>{item.day} Day & {item.night} Night</AppText>
+            </View>
+            <AppText style={styles.cost}>&#8377;{numberWithCommas(item.cost)}</AppText>
+          </View>
+          <View style={styles.listBottomSection}>
+            <Image 
+              source={item.ownerImage}
+              style={styles.ownerImage}
+            />
+            <AppText style={styles.ownerName}>{item.ownerName}</AppText>
+            <View style={styles.likesContainer}>
+              <Ionicons style={styles.likesIcon} name="heart-outline" size={16} />
+              <AppText style={styles.likesText}>{item.likes}</AppText>
+              <FontAwesome5 style={styles.likesIcon} name="eye" size={16} />
+              <AppText style={styles.likesText}>{item.views}</AppText>
+            </View>
+          </View>
+        </View>
       </Pressable>
-    </View>
-  )
-
-  const RenderList = ({item, index}) => (
-    <View style={styles.listItem}>
-      <Image 
-        source={item.image}
-        key={index}
-        style={styles.listImage}
-      />
-      <View style={styles.listBody}>
-        <AppText style={styles.listTitle}>{item.title}</AppText>
-        <View style={styles.listTopSection}>
-          <View style={styles.titleContainer}>
-            <AppText style={styles.listDay}>{item.day} Day & {item.night} Night</AppText>
-          </View>
-          <View style={styles.likesContainer}>
-            <Ionicons style={styles.likesIcon} name="heart-outline" size={18} />
-            <AppText style={styles.likesText}>{item.likes}</AppText>
-            <FontAwesome5 style={styles.likesIcon} name="eye" size={18} />
-            <AppText style={styles.likesText}>{item.views}</AppText>
-          </View>
-        </View>
-        <View style={styles.listBottomSection}>
-          <Image 
-            source={item.ownerImage}
-            style={styles.ownerImage}
-          />
-          <AppText style={styles.ownerName}>{item.ownerName}</AppText>
-        </View>
-
-      </View>
-    </View>
-  )
+  )))
 
   return (
     <AppScreen style={styles.container}>
-      <FlatList
-        data={mockData}
-        keyboardDismissMode={'none'}
-        keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={<SearchBox />}
-        contentContainerStyle={styles.listContainer}
-        renderItem={RenderList}
-      />
+      <View style={styles.searchBoxContainer}>
+        <TextInput 
+          onChangeText={setSearchText}
+          value={searchText}
+          width={'90%'}
+          placeholder="Explore plans for city"
+          style={styles.textInputStyling}
+          containerStyling={styles.textInputContainerStyling}/>
+        <Pressable onPress={onSearchIconClick}>
+          <Ionicons name="search-outline" size={30} />
+        </Pressable>
+      </View>
+      <ScrollView>
+        <RenderList/>
+      </ScrollView>
     </AppScreen>
   )
 }
@@ -96,10 +93,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginRight: 10
   },
-  listContainer: {
-    justifyContent: 'center',
-    width: '90%',
-  },
   listItem: {
     width: '100%',
     borderRadius: 30,
@@ -108,7 +101,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   listImage: {
-    width: '100%',
+    width: screenWidth - 40,
     height: 200
   },
   listBody: {
@@ -121,6 +114,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   ownerName: {
+    flex: 1,
     fontWeight: '700',
     color: colors.gray5
   },
@@ -134,10 +128,8 @@ const styles = StyleSheet.create({
   },
   likesContainer: {
     alignItems: 'center',
-    flexDirection: 'row'
-  },
-  likesText: {
-    fontSize: 16
+    flexDirection: 'row',
+    marginRight: 10
   },
   likesIcon: {
     marginRight: 5,
@@ -150,10 +142,16 @@ const styles = StyleSheet.create({
   listTitle: {
     color: colors.darkGrey,
     fontWeight: '700',
-    fontSize: 20
+    fontSize: sizes.fontSubHeading
   },
   listDay: {
     color: colors.gray3
+  },
+  cost: {
+    fontWeight: '700',
+    marginRight: 10,
+    color: colors.primary,
+    fontSize: sizes.fontSubHeading
   }
 });
 export default Explore;

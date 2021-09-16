@@ -1,10 +1,10 @@
 import { Platform } from "react-native";
-import { colors } from "./theme";
+import { colors, sizes } from "./theme";
 
 export default {
   text: {
     color: colors.darkGrey,
-    fontSize: 18,
+    fontSize: sizes.font,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
   },
   button: {
@@ -17,7 +17,7 @@ export default {
   },
   headingText: {
     fontWeight: '700',
-    fontSize: 30,
+    fontSize: sizes.fontHeading,
     marginBottom: 30
   }
 };
