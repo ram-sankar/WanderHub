@@ -21,10 +21,13 @@ const colors = {
 const sizes = {
   // global sizes
   base: 16,
+  fontXS: 10,
+  fontS: 12,
   font: 14,
-  fontMainHeading: 22,
-  fontHeading: 18,
-  fontSubHeading: 16,
+  fontL: 16,
+  fontXL: 18,
+  fontXXL: 20,
+  fontXXXL: 22,
   radius: 6,
   padding: 10,
 

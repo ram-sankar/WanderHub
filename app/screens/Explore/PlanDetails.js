@@ -12,9 +12,24 @@ import Contact from "./Contact";
 
 function PlanDetails({ route }) {
   const { id } = route.params;
-  const mockData = {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../../assets/images/hillWithFalls.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'};
+  const mockData = {
+    id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../../assets/images/hillWithFalls.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey',
+    about: `You can use overflow: 'hidden' to achieve the desired result without having to install a library.wrap the view in a parent view and set the parent's overflow to hidden and apply a padding only on the side where you want your shadow to appear like so:`,
+    inclusion: [
+      {name: 'travel', iconType: 'Ionicons', iconName: 'bus'}, 
+      {name: 'food', iconType: 'Ionicons', iconName: 'fast-food-outline'}, 
+      {name: 'hotel', iconType: 'MaterialIcons', iconName: 'hotel'}, 
+      {name: 'Entry Fee', iconType: 'FontAwesome', iconName: 'money'},
+      {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
+      {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
+      {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
+    ]
+  };
+  const userPreference = { isLiked: false, isBookMarked: false}
+  
+  const dataToComponent = {...mockData, ...userPreference};
   const tabHeaders = ['Overview', 'Itinerary', 'Contact'];
-  const tabComponents = [<Overview />, <Itinerary />, <Contact />];
+  const tabComponents = [<Overview data={dataToComponent} />, <Itinerary />, <Contact />];
   
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])
@@ -63,7 +78,7 @@ const styles = StyleSheet.create({
   },
   tabHeaderText: {
     fontWeight: '700',
-    fontSize: sizes.fontSubHeading,
+    fontSize: sizes.fontL,
     color: colors.gray5,
   },
   tabHeaderContainer: {

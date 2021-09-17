@@ -17,7 +17,7 @@ export default {
   },
   headingText: {
     fontWeight: '700',
-    fontSize: sizes.fontHeading,
+    fontSize: sizes.fontXL,
     marginBottom: 30
   },
   tabBarStyle: {

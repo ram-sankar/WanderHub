@@ -74,7 +74,7 @@ function Explore() {
           <Ionicons name="search-outline" size={30} />
         </Pressable>
       </View>
-      <ScrollView>
+      <ScrollView showsHorizontalScrollIndicator={false}>
         <RenderList/>
       </ScrollView>
     </AppScreen>
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   listTitle: {
     color: colors.darkGrey,
     fontWeight: '700',
-    fontSize: sizes.fontSubHeading
+    fontSize: sizes.fontL
   },
   listDay: {
     color: colors.gray3
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginRight: 10,
     color: colors.primary,
-    fontSize: sizes.fontSubHeading
+    fontSize: sizes.fontL
   }
 });
 export default Explore;
