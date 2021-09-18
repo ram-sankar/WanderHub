@@ -31,7 +31,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{user, setUser}}>
       <NavigationContainer theme={NavigationTheme}>
-        { !user ? <AppNavigator/> : <AuthNavigator/> }
+        { user ? <AppNavigator/> : <AuthNavigator/> }
       </NavigationContainer>
     </AuthContext.Provider>
   );

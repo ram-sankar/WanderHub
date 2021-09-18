@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: "row",
     marginVertical: 10,
-    height: 40
+    height: 50
   },
   icon: {
     marginRight: 10,
   },
   inputStyling: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     width: '100%'
   }
 });

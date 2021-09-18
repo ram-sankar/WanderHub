@@ -10,8 +10,8 @@ function Welcome({navigation}) {
   return (
     <AppScreen style={styles.container}>
       <View style={styles.headingContainer}>
-        <AppText style={styles.text}>We got your </AppText>
-        <AppText style={styles.textPrimary}>plan ready</AppText>
+        <AppText style={styles.text}>We got your plan</AppText>
+        <AppText style={styles.textPrimary}> ready!</AppText>
       </View>
       <AppText style={styles.secondaryText}>Sit tight and chill</AppText>
       <Image
