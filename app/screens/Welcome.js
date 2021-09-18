@@ -10,21 +10,21 @@ function Welcome({navigation}) {
   return (
     <AppScreen style={styles.container}>
       <View style={styles.headingContainer}>
-        <AppText style={styles.text}>Your home.</AppText>
-        <AppText style={styles.textGreen}>Greener</AppText>
+        <AppText style={styles.text}>We got your </AppText>
+        <AppText style={styles.textPrimary}>plan ready</AppText>
       </View>
-      <AppText style={styles.secondaryText}>Enjoy the experience</AppText>
+      <AppText style={styles.secondaryText}>Sit tight and chill</AppText>
       <Image
         resizeMode="contain"
         style={styles.image}
-        source={require("../assets/images/illustration_1.png")}
+        source={require("../assets/images/women_resting.png")}
       />
       <AppButton
-        title="Login"
+        title="LOG IN"
         onPress={() => navigation.navigate('Login')}
       />
       <AppButton
-        title="Signup"
+        title="SIGN UP"
         onPress={() => navigation.navigate('Login')}
         color="black"
         backgroundColor="white"
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
   },
-  textGreen: {
+  textPrimary: {
     fontSize: 24,
     fontWeight: "bold",
     color: colors.primary,
