@@ -8,12 +8,6 @@ import { colors, sizes } from "../../constants/theme";
 function Itinerary({data}) {
   const [activeDay, setActiveDay] = useState(1);
 
-  const RenderList = ({places}) => (
-    places.map((place, index) => (
-      <AppText key={index} style={styles.dayContent}>{`\u2022 ${place.title}`}</AppText>
-    ))
-  )
-
   const Bullet = ({places}) => (
     places.map((place, index) => (
       <View key={index} style={styles.row}>

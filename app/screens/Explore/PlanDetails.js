@@ -21,8 +21,6 @@ function PlanDetails({ route }) {
       {name: 'hotel', iconType: 'MaterialIcons', iconName: 'hotel'}, 
       {name: 'Entry Fee', iconType: 'FontAwesome', iconName: 'money'},
       {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
-      {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
-      {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
     ],
     itinerary: [
       {day: 1, heading: 'Depart from Bangalore', places: [
