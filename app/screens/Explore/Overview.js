@@ -9,10 +9,9 @@ import { colors, sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 
 const iconColor = colors.gray5;
+const iconSize = 22;
 
 function Overview({data}) {
-  console.log(data);
-  const iconSize = 24;
 
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -31,11 +30,11 @@ function Overview({data}) {
         </View>
         <View style={styles.iconBox}>
           <Ionicons style={styles.likesIcon} name="heart-outline" size={iconSize} color={iconColor}/>
-          <AppText style={styles.iconText}>{data.likes}</AppText>
+          <AppText style={styles.iconText}>{data.likes} Likes</AppText>
         </View>
         <View style={styles.iconBox}>
           <FontAwesome5 style={styles.likesIcon} name="eye" size={iconSize} color={iconColor}/>
-          <AppText style={styles.iconText}>{data.views}</AppText>
+          <AppText style={styles.iconText}>{data.views} Views</AppText>
         </View>
         <View style={styles.iconBox}>
           <MaterialCommunityIcons style={styles.likesIcon} name="share" size={iconSize} color={iconColor} />
@@ -57,13 +56,13 @@ function Overview({data}) {
       <AppText style={styles.title}>{data.title}</AppText>
       <TopSection />
       <IconTray />
-      <AppText style={styles.includedText}>Included</AppText>
+      <AppText style={styles.subHeading}>Included</AppText>
       <View style={[styles.iconsTray, styles.includedItemTray]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <IncludedItem />
         </ScrollView>
       </View>
-      <AppText style={styles.includedText}>About</AppText>
+      <AppText style={[styles.subHeading, styles.aboutHeading]}>About</AppText>
       <AppText style={styles.aboutText}>{data.about}</AppText>
       
     </AppScreen>
@@ -72,12 +71,12 @@ function Overview({data}) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 1,
+    paddingTop: 0,
     paddingHorizontal: 10,
   },
   title: {
     fontWeight: '700',
-    fontSize: sizes.fontXXL,
+    fontSize: sizes.fontXL,
     paddingTop: 10
   },
   iconsTray: {
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   iconText: {
-    fontSize: sizes.fontL,
+    fontSize: sizes.fontS,
     color: iconColor,
     paddingLeft: 5
   },
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
   },
   days: {
     color: colors.gray3,
-    fontSize: sizes.fontL
+    fontSize: sizes.font
   },
   cost: {
     fontWeight: '700',
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     color: colors.red,
     fontSize: sizes.fontL
   },
-  includedText: {
+  subHeading: {
     fontWeight: '700',
     fontSize: sizes.fontL,
     paddingTop: 20,
@@ -125,6 +124,9 @@ const styles = StyleSheet.create({
     alignItems:'center',
     minWidth: 60,
     paddingHorizontal: 10
+  },
+  aboutHeading: {
+    paddingBottom: 5
   },
   aboutText: {
     fontSize: sizes.font,

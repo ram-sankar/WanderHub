@@ -14,7 +14,7 @@ function PlanDetails({ route }) {
   const { id } = route.params;
   const mockData = {
     id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../../assets/images/hillWithFalls.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey',
-    about: `You can use overflow: 'hidden' to achieve the desired result without having to install a library.wrap the view in a parent view and set the parent's overflow to hidden and apply a padding only on the side where you want your shadow to appear like so:`,
+    about: `Kudremukha is a mountain range and name of a peak located in Chikkamagaluru district, in Karnataka, India. It is also the name of a small hill station cum mining town situated near the mountain, about 20 kilometres from Kalasa.`,
     inclusion: [
       {name: 'travel', iconType: 'Ionicons', iconName: 'bus'}, 
       {name: 'food', iconType: 'Ionicons', iconName: 'fast-food-outline'}, 
@@ -23,13 +23,29 @@ function PlanDetails({ route }) {
       {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
       {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
       {name: 'Equipments', iconType: 'MaterialCommunityIcons', iconName: 'hiking'},
+    ],
+    itinerary: [
+      {day: 1, heading: 'Depart from Bangalore', places: [
+        {title: 'Depart from Bangalore by 5:00 AM'},
+        {title: 'Refresh yourselves at Elniru falls on the way'},
+        {title: 'Check in at the homestay, have dinner and hit the bed early'},
+      ]},
+      {day: 2, heading: 'Kudremukh Trek', places: [
+        {title: 'Jeep Ride to the Kudremukh Trek Base'},
+        {title: 'Start the trek to Kudremukh by 6:00 am'},
+        {title: 'Reach the peak and Descend by 5:00 pm'},
+      ]},
+      {day: 3, heading: 'Depart from Bangalore', places: [
+        {title: 'Refresh yourselves at Hebba falls on the way'},
+        {title: 'Reach Bangalore by 5:00 am'},
+      ]}
     ]
   };
   const userPreference = { isLiked: false, isBookMarked: false}
   
   const dataToComponent = {...mockData, ...userPreference};
   const tabHeaders = ['Overview', 'Itinerary', 'Contact'];
-  const tabComponents = [<Overview data={dataToComponent} />, <Itinerary />, <Contact />];
+  const tabComponents = [<Overview data={dataToComponent} />, <Itinerary data={dataToComponent} />, <Contact data={dataToComponent} />];
   
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])

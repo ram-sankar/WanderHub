@@ -74,7 +74,7 @@ function Explore() {
           <Ionicons name="search-outline" size={30} />
         </Pressable>
       </View>
-      <ScrollView showsHorizontalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <RenderList/>
       </ScrollView>
     </AppScreen>
