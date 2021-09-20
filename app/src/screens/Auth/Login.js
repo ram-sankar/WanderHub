@@ -1,15 +1,15 @@
 import React, {useState} from "react";
-import { Dimensions, ScrollView, KeyboardAvoidingView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import * as Yup from "yup";
 
-import AppScreen from "../components/AppScreen";
-import AppText from "../components/AppText";
-import BackButton from "../components/BackButton";
-import { ErrorMessage, Form, FormField, SubmitButton } from "../components/forms";
-import { colors, sizes } from "../constants/theme";
-import authApi from "../api/auth"
-import useAuth from "../auth/useAuth";
-import AppIcons from "../components/AppIcons";
+import AppScreen from "../../components/AppScreen";
+import AppText from "../../components/AppText";
+import BackButton from "../../components/BackButton";
+import { ErrorMessage, Form, FormField, SubmitButton } from "../../components/forms";
+import { colors, sizes } from "../../constants/theme";
+import authApi from "../../api/auth"
+import useAuth from "../../auth/useAuth";
+import AppIcons from "../../components/AppIcons";
 
 const { height } = Dimensions.get('window');
 

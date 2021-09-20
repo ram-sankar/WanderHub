@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
-import AppButton from "../components/AppButton";
-import AppText from "../components/AppText";
-import { colors } from "../constants/theme";
-import AppScreen from "../components/AppScreen";
+import AppButton from "../../components/AppButton";
+import AppText from "../../components/AppText";
+import { colors } from "../../constants/theme";
+import AppScreen from "../../components/AppScreen";
 
 function Welcome({navigation}) {
   return (
@@ -17,7 +17,7 @@ function Welcome({navigation}) {
       <Image
         resizeMode="contain"
         style={styles.image}
-        source={require("../assets/images/women_resting.png")}
+        source={require("../../assets/images/women_resting.png")}
       />
       <AppButton
         title="LOG IN"

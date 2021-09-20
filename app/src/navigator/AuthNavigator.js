@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Welcome from '../screens/Welcome'
-import Login from '../screens/Login'
+import Welcome from '../screens/Auth/Welcome'
+import Login from '../screens/Auth/Login'
 import Home from '../screens/Home';
 import routes from './routes';
 
