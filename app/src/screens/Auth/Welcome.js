@@ -5,6 +5,7 @@ import AppButton from "../../components/AppButton";
 import AppText from "../../components/AppText";
 import { colors } from "../../constants/theme";
 import AppScreen from "../../components/AppScreen";
+import routes from "../../navigator/routes";
 
 function Welcome({navigation}) {
   return (
@@ -21,11 +22,11 @@ function Welcome({navigation}) {
       />
       <AppButton
         title="LOG IN"
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate(routes.LOGIN)}
       />
       <AppButton
         title="SIGN UP"
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate(routes.REGISTER)}
         color="black"
         backgroundColor="white"
       />
