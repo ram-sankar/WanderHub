@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import styles from "../constants/styles";
 
 import defaultStyles from "../constants/styles";
@@ -15,7 +15,14 @@ export default function AppButton({title, onPress, color="white", backgroundColo
       ]}
       onPress={onPress}
     >
-      <Text style={[styles.text, {color: colors[color]}]}>{title}</Text>
+      <Text style={[styles.text, customStyles.buttonText, {color: colors[color]}]}>{title}</Text>
     </TouchableOpacity>
   )
 }
+
+const customStyles = StyleSheet.create({
+  buttonText: {
+    fontWeight: '700',
+    letterSpacing: 1
+  }
+});

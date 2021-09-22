@@ -13,7 +13,7 @@ import routes from "../../navigator/routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(4).label("Password"),
+  password: Yup.string().required().min(8).label("Password"),
 });
 
 function Login({navigation}) {
@@ -29,7 +29,7 @@ function Login({navigation}) {
 
   const LoginForm = () => (
     <Form 
-        initialValues={{ email: "jonas@dark.com", password: "martha" }}
+        initialValues={{ email: "jonas@dark.com", password: "martha_jonas" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
