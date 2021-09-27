@@ -6,7 +6,7 @@ const colors = {
   tertiary: "#FFE358",
   black: "#323643",
   white: "#FFFFFF",
-  darkGrey: '#14213d',
+  darkGrey: '#242424',
   gray: "#9DA3B4",
   gray2: "#C5CCD6",
   gray3: "#959ba3",

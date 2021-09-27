@@ -4,8 +4,8 @@ import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
 
 import AppScreen from "../../components/AppScreen";
+import AppSearchScreen from "../../components/AppSearchScreen";
 import AppText from "../../components/AppText";
-import TextInput from "../../components/TextInput";
 import { colors, sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 import routes from "../../navigator/routes";
@@ -14,7 +14,7 @@ const screenWidth = Dimensions.get('window').width;
 
 function Explore() {
   const navigation = React.useContext(NavigationContext);
-  const [searchText, setSearchText] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const mockData = [
     {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
     {id: 2, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
@@ -22,22 +22,25 @@ function Explore() {
     {id: 4, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
   ]
 
-  const onSearchIconClick = () => {
-    Keyboard.dismiss();
-    console.log(searchText);
+  const submitSearch = (searchText) => {
+    setIsModalVisible(false);
+    console.log(searchText.nativeEvent.text);
   }
+
+  const RenderModel = () => {
+    return(
+    <AppSearchScreen 
+      isModalVisible={isModalVisible} 
+      setIsModalVisible={setIsModalVisible}
+      placeholderText="Explore plans for city"
+      submitSearch={submitSearch} 
+    />
+  )}
 
   const SearchBox = () => (
     <View style={styles.searchBoxContainer}>
-      <TextInput 
-        onChangeText={(setSearchText)}
-        value={searchText}
-        width={'90%'}
-        placeholder="Explore plans for city"
-        style={styles.textInputStyling}
-        containerStyling={styles.textInputContainerStyling}/>
-      <Pressable onPress={onSearchIconClick}>
-        <Ionicons name="search-outline" size={30} />
+      <Pressable onPress={() => setIsModalVisible(true)} style={styles.searchBox}>
+        <AppText style={styles.searchBoxText}>Explore plans for city</AppText>
       </Pressable>
     </View>
   )
@@ -79,12 +82,11 @@ function Explore() {
     <AppScreen style={styles.container}>
       <FlatList
         data={mockData}
-        keyboardDismissMode={'none'}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<SearchBox />}
-        contentContainerStyle={styles.listContainer}
         renderItem={RenderList}
       />
+      {isModalVisible && <RenderModel />}
     </AppScreen>
   )
 }
@@ -93,19 +95,21 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center'
   },
-  searchBoxContainer:{
-    flexDirection: 'row',
-    paddingHorizontal: 20,
+  searchBoxContainer: {
+    width: '100%',
     alignItems: 'center'
   },
-  textInputContainerStyling: {
-    borderColor: colors.darkGrey,
+  searchBox: {
+    width: '90%',
+    height: 40,
     borderWidth: 1,
+    padding: 10,
     borderRadius: 25,
-    marginRight: 10
+    borderColor: colors.darkGrey,
+    marginVertical: 10
   },
-  listContainer: {
-    width: '100%',
+  searchBoxText: {
+    color: colors.gray4
   },
   listItem: {
     width: '90%',
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   listImage: {
-    width: '100%',
+    width: screenWidth * 0.9,
     height: 200
   },
   listBody: {
