@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Image, Pressable, Keyboard, Dimensions  } from "react-native";
+import { View, StyleSheet, FlatList, Image, Pressable, Keyboard, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
 
@@ -26,6 +26,21 @@ function Explore() {
     Keyboard.dismiss();
     console.log(searchText);
   }
+
+  const SearchBox = () => (
+    <View style={styles.searchBoxContainer}>
+      <TextInput 
+        onChangeText={(setSearchText)}
+        value={searchText}
+        width={'90%'}
+        placeholder="Explore plans for city"
+        style={styles.textInputStyling}
+        containerStyling={styles.textInputContainerStyling}/>
+      <Pressable onPress={onSearchIconClick}>
+        <Ionicons name="search-outline" size={30} />
+      </Pressable>
+    </View>
+  )
 
   const RenderList = () => (
     mockData.map((item, index) => (
@@ -62,21 +77,14 @@ function Explore() {
 
   return (
     <AppScreen style={styles.container}>
-      <View style={styles.searchBoxContainer}>
-        <TextInput 
-          onChangeText={setSearchText}
-          value={searchText}
-          width={'90%'}
-          placeholder="Explore plans for city"
-          style={styles.textInputStyling}
-          containerStyling={styles.textInputContainerStyling}/>
-        <Pressable onPress={onSearchIconClick}>
-          <Ionicons name="search-outline" size={30} />
-        </Pressable>
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <RenderList/>
-      </ScrollView>
+      <FlatList
+        data={mockData}
+        keyboardDismissMode={'none'}
+        keyExtractor={(item, index) => index.toString()}
+        ListHeaderComponent={<SearchBox />}
+        contentContainerStyle={styles.listContainer}
+        renderItem={RenderList}
+      />
     </AppScreen>
   )
 }
@@ -96,15 +104,19 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginRight: 10
   },
-  listItem: {
+  listContainer: {
     width: '100%',
-    borderRadius: 30,
+  },
+  listItem: {
+    width: '90%',
+    marginLeft: '5%',
+    borderRadius: 10,
     backgroundColor: colors.white,
     marginVertical: 5,
     overflow: 'hidden'
   },
   listImage: {
-    width: screenWidth - 40,
+    width: '100%',
     height: 200
   },
   listBody: {

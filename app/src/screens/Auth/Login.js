@@ -29,7 +29,7 @@ function Login({navigation}) {
 
   const LoginForm = () => (
     <Form 
-        initialValues={{ email: "jonas@dark.com", password: "martha_jonas" }}
+        initialValues={{ email: "jonasK@dark.com", password: "martha_jonas" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >

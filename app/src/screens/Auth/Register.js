@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 function Register({navigation}) {
   const auth = useAuth();
   const [registerFailed, setRegisterFailed] = useState(null);
-  const initialValues= { name: "jonas", email: "jonas@dark.com", password: "martha_jonas" };
+  const initialValues= { name: "jonas", email: "jonasK@dark.com", password: "martha_jonas" };
 
   const handleSubmit = async (data) => {
     const result = await userApi.register(data)
