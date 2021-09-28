@@ -1,14 +1,14 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-import AppScreen from "../components/AppScreen";
-import AppText from "../components/AppText";
+import AppScreen from "../../components/AppScreen";
+import AppText from "../../components/AppText";
 
-function Profile() {
+function Posts() {
   return (
     <AppScreen style={styles.container}>
       <View>
-        <AppText>Profile</AppText>
+        <AppText>Posts</AppText>
       </View>
     </AppScreen>
   )
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
-export default Profile;
+export default Posts;

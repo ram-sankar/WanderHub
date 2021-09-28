@@ -9,18 +9,13 @@ import AppText from "../../components/AppText";
 import { colors, sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 import routes from "../../navigator/routes";
+import { exploreHome } from "../../constants/mocks";
 
 const screenWidth = Dimensions.get('window').width;
 
 function Explore() {
   const navigation = React.useContext(NavigationContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const mockData = [
-    {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 2, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 3, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-    {id: 4, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-  ]
 
   const submitSearch = (searchText) => {
     setIsModalVisible(false);
@@ -46,7 +41,7 @@ function Explore() {
   )
 
   const RenderList = () => (
-    mockData.map((item, index) => (
+    exploreHome.map((item, index) => (
       <Pressable onPress={() => navigation.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem} key={index}>
         <Image 
           source={item.image}
@@ -81,7 +76,7 @@ function Explore() {
   return (
     <AppScreen style={styles.container}>
       <FlatList
-        data={mockData}
+        data={exploreHome}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<SearchBox />}
         renderItem={RenderList}
