@@ -11,12 +11,12 @@ function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, s
 
   useEffect(() => {
     setTimeout(() => inputEl.current.focus(), 100)
-    // inputEl.current.focus();
   }, [])
 
   return (
     <Modal
       visible={isModalVisible}
+      onRequestClose={() => setIsModalVisible(false)}
       {...rest}
     >
       <View style={styles.centeredView}>

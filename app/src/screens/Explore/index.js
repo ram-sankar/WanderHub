@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Image, Pressable, Keyboard, Dimensions  } from "react-native";
+import { View, StyleSheet, FlatList, Image, Pressable, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
 
