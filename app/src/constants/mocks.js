@@ -4,7 +4,9 @@ const profileDetails = {
   postsCount: 50,
   location: "Chennai, India",
   posts: [
-    {image: "", name: "", place: ""}
+    {image: require("../assets/images/jaipur.jpg"), name: "Exploring Rajasthan", place: "Rajasthan"},
+    {image: require("../assets/images/taj.jpg"), name: "The Taj Mahal", place: "Agra, Uttar Pradesh"},
+    {image: require("../assets/images/kedarkantha.jpg"), name: "Into the Himalayas", place: "Kedarkantha, Uttarakhand"},
   ],
   cities: [
     {id: 1, name: "Jaipur", state: "Rajasthan", date: "22/10/2017"},

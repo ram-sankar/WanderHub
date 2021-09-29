@@ -11,7 +11,9 @@ function AppPopupMenu({actions, onPress}) {
   const handleMenuPress = () => setVisible(true);
 
   const handleOptionSelect = (option) => {
-    onPress(option)
+    if (option) {
+      onPress(option)
+    }
     setVisible(false);
   }
 
