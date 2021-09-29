@@ -4,14 +4,14 @@ const profileDetails = {
   postsCount: 50,
   location: "Chennai, India",
   posts: [
-    {image: require("../assets/images/jaipur.jpg"), name: "Exploring Rajasthan", place: "Rajasthan"},
-    {image: require("../assets/images/taj.jpg"), name: "The Taj Mahal", place: "Agra, Uttar Pradesh"},
-    {image: require("../assets/images/kedarkantha.jpg"), name: "Into the Himalayas", place: "Kedarkantha, Uttarakhand"},
+    {id: 1, image: require("../assets/images/jaipur.jpg"), name: "Exploring Rajasthan", place: "Rajasthan"},
+    {id: 2, image: require("../assets/images/taj.jpg"), name: "The Taj Mahal", place: "Agra, Uttar Pradesh"},
+    {id: 3, image: require("../assets/images/kedarkantha.jpg"), name: "Into the Himalayas", place: "Kedarkantha, Uttarakhand"}
   ],
   cities: [
     {id: 1, name: "Jaipur", state: "Rajasthan", date: "22/10/2017"},
     {id: 2, name: "Mumbai", state: "Maharastra", date: "2/1/2018"},
-    {id: 3, name: "Agra", state: "Uttar Pradesh", date: "13/11/2018"},
+    {id: 3, name: "Agra", state: "Uttar Pradesh", date: "13/11/2018"}
   ]
 }
 

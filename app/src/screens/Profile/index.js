@@ -12,7 +12,7 @@ import Cities from "./Cities";
 const iconSize = 80, iconPadding = 20;
 function Profile() {
   const tabHeaders = ['Posts', 'Cities'];
-  const tabComponents = [<Posts data={profileDetails} />, <Cities data={profileDetails.cities} />];
+  const tabComponents = [<Posts data={profileDetails.posts} />, <Cities data={profileDetails.cities} />];
 
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])

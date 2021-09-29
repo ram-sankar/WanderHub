@@ -40,14 +40,9 @@ function Explore() {
     </View>
   )
 
-  const RenderList = () => (
-    exploreHome.map((item, index) => (
-      <Pressable onPress={() => navigation.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem} key={index}>
-        <Image 
-          source={item.image}
-          key={index}
-          style={styles.listImage}
-        />
+  const RenderList = ({item}) => (
+      <Pressable onPress={() => navigation.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem}>
+        <Image source={item.image} style={styles.listImage} />
         <View style={styles.listBody}>
           <AppText style={styles.listTitle}>{item.title}</AppText>
           <View style={styles.listTopSection}>
@@ -71,7 +66,7 @@ function Explore() {
           </View>
         </View>
       </Pressable>
-  )))
+  )
 
   return (
     <AppScreen style={styles.container}>
