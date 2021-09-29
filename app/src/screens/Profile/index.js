@@ -12,7 +12,7 @@ import Cities from "./Cities";
 const iconSize = 80, iconPadding = 20;
 function Profile() {
   const tabHeaders = ['Posts', 'Cities'];
-  const tabComponents = [<Posts data={profileDetails} />, <Cities data={profileDetails} />];
+  const tabComponents = [<Posts data={profileDetails} />, <Cities data={profileDetails.cities} />];
 
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])
@@ -96,8 +96,6 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   },
   tabContainer: {
-    // borderTopColor: colors.gray2,
-    // borderTopWidth: 1,
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',

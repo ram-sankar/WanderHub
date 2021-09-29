@@ -7,7 +7,9 @@ const profileDetails = {
     {image: "", name: "", place: ""}
   ],
   cities: [
-    {name: "Jaipur", state: "Rajasthan", date: "22/10/2017"}
+    {id: 1, name: "Jaipur", state: "Rajasthan", date: "22/10/2017"},
+    {id: 2, name: "Mumbai", state: "Maharastra", date: "2/1/2018"},
+    {id: 3, name: "Agra", state: "Uttar Pradesh", date: "13/11/2018"},
   ]
 }
 
