@@ -40,6 +40,7 @@ function Posts({data}) {
         data={data}
         keyExtractor={(item, index) => index.toString()}
         renderItem={PostCard}
+        showsVerticalScrollIndicator={false}
       />
     </AppScreen>
   )

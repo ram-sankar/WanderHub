@@ -75,6 +75,7 @@ function Explore() {
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={<SearchBox />}
         renderItem={RenderList}
+        showsVerticalScrollIndicator={false}
       />
       {isModalVisible && <RenderModel />}
     </AppScreen>

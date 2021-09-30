@@ -11,4 +11,6 @@ export default Object.freeze({
   EXPLORE_TAB: "ExploreTab",
   EXPLORE_SCREEN: "ExploreScreen",
   PLAN_DETAILS: "PlanDetails",
+  ADD_CONTENT_TAB: "AddContentTab",
+  ADD_CONTENT_SCREEN: "AddContentScreen",
 })

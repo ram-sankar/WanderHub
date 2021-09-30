@@ -1,14 +1,14 @@
 import React from "react"
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 import routes from "./routes";
 import Home from '../screens/Home';
-import Search from "../screens/Search";
 import Profile from "../screens/Profile";
 import Favorite from "../screens/Favorite";
 import ExploreNavigator from "./ExploreNavigator";
+import AddContentNavigator from "./AddContentNavigator";
 import styles from "../constants/styles";
+import AppIcons from "../components/AppIcons";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +26,7 @@ export default function AppNavigator() {
       component={Home}
       options={{
         tabBarIcon: ({color, size}) => 
-          <Ionicons name="ios-home" color={color} size={size} />
+          <AppIcons Icon="Ionicons" name="ios-home" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 
@@ -34,15 +34,15 @@ export default function AppNavigator() {
       component={ExploreNavigator}
       options={{
         tabBarIcon: ({color, size}) => 
-          <Ionicons name="compass" color={color} size={size} />
+          <AppIcons Icon="Ionicons" name="compass" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 
-      name={routes.SEARCH}
-      component={Search}
+      name={routes.ADD_CONTENT_TAB}
+      component={AddContentNavigator}
       options={{
         tabBarIcon: ({color, size}) => 
-          <Ionicons name="search-outline" color={color} size={size} />
+          <AppIcons Icon="AntDesign" name="pluscircle" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 
@@ -50,7 +50,7 @@ export default function AppNavigator() {
       component={Favorite}
       options={{
         tabBarIcon: ({color, size}) => 
-          <Ionicons name="heart" color={color} size={size} />
+          <AppIcons Icon="Ionicons" name="heart" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 
@@ -58,7 +58,7 @@ export default function AppNavigator() {
       component={Profile}
       options={{
         tabBarIcon: ({color, size}) => 
-          <MaterialCommunityIcons name="account" size={size} color={color} />
+          <AppIcons Icon="MaterialCommunityIcons" name="account" size={size} color={color}/>
       }}  
     />
     </Tab.Navigator>
