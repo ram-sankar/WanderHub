@@ -13,4 +13,6 @@ export default Object.freeze({
   PLAN_DETAILS: "PlanDetails",
   ADD_CONTENT_TAB: "AddContentTab",
   ADD_CONTENT_SCREEN: "AddContentScreen",
+  NEW_POST: "NewPost",
+  NEW_CITY: "NewCity",
 })
