@@ -22,14 +22,16 @@ function AddContent() {
     <AppScreen style={styles.container}>
     <View style={styles.contentContainer}>
       <Image source={require("../../assets/images/newPost.png")} style={styles.image}/>
-      <TouchableOpacity onPress={onNewCityClick}>
-        <AppText style={styles.button}>Create</AppText>
+      <AppText style={styles.buttonText}>Tell us about your last trip</AppText>
+      <TouchableOpacity onPress={onNewPostClick}>
+        <AppText style={styles.button}>New Post</AppText>
       </TouchableOpacity>
     </View>
         <View style={styles.contentContainer}>
           <Image source={require("../../assets/images/newCity.png")} style={styles.image}/>
-          <TouchableOpacity onPress={onNewPostClick}>
-              <AppText style={styles.button}>Create</AppText>
+          <AppText style={styles.buttonText}>Add your last visited city to your profile</AppText>
+          <TouchableOpacity onPress={onNewCityClick}>
+              <AppText style={styles.button}>Add City</AppText>
           </TouchableOpacity>
         </View>
     </AppScreen>
@@ -59,6 +61,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     color: colors.white,
     marginTop: 10
+  },
+  buttonText: {
+    marginTop: 10,
+    fontWeight: '700',
+    fontSize: sizes.fontL,
+    width: 200,
+    textAlign: 'center',
   }
 });
 export default AddContent;

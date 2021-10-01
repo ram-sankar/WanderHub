@@ -1,17 +1,52 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Constants from "expo-constants";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
+import { colors, sizes } from "../../constants/theme";
+import { Form, FormField, SubmitButton } from "../../components/forms";
 
 function NewCity() {
+
+  const handleSubmit = async (data) => {
+    console.log(data);
+  }
+
+  const InputForm = () => (
+    <Form 
+        initialValues={{ city: "", date: "" }}
+        onSubmit={handleSubmit}
+      >
+        <View>
+          <AppText style={styles.inputTitle}>City Name</AppText>
+          <FormField
+            autoCorrect={false}
+            name="city"
+            placeholder="City"
+          />
+        </View>
+        <View>
+          <AppText style={styles.inputTitle}>Trip Date</AppText>
+          <FormField
+            autoCorrect={false}
+            name="date"
+            placeholder="Date of Visit"
+          />
+        </View>
+        <SubmitButton title="Add City" style={styles.loginButton}/>
+      </Form>
+  )
+
+
   return (
     <AppScreen style={styles.container}>
       <BackButton style={styles.backButton} />
-      <View>
-        <AppText>NewCity</AppText>
+      <View style={styles.headerContainer}>
+        <AppText style={styles.headingText}>Add your last visited city to your profile</AppText>
+      </View>
+      <View style={styles.inputContainer}>
+        <InputForm />
       </View>
     </AppScreen>
   )
@@ -19,13 +54,42 @@ function NewCity() {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    padding: 40,
   },
   backButton: {
-    // marginTop: Constants.statusBarHeight,
     position: 'absolute',
-    top: 10,
-    left: 30
+    top: 40,
   },
+  headerContainer: {
+    alignItems: 'center',
+  },
+  headingText: {
+    alignItems: 'center',
+    textAlign: 'center',
+    width: 250,
+    fontWeight: '700',
+    fontSize: sizes.fontXXL,
+  },
+  inputContainer: {
+    marginTop: 60,
+    alignItems: 'center'
+  },
+  inputTitle: {
+    color: colors.primary,
+    fontWeight: '700',
+    fontSize: sizes.fontL,
+    marginTop: 10
+  },
+  submitButton: {
+    fontSize: sizes.fontL,
+    fontWeight: '700',
+    backgroundColor: colors.primary,
+    padding: 10,
+    width: 100,
+    textAlign: 'center' ,
+    borderRadius: 10,
+    color: colors.white,
+    marginTop: 10,
+  }
 });
 export default NewCity;
