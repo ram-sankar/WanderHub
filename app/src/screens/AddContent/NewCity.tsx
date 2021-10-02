@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import * as Yup from "yup";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
@@ -9,7 +10,12 @@ import { Form, FormField, SubmitButton } from "../../components/forms";
 
 function NewCity() {
 
-  const handleSubmit = async (data: FixMeLater) => {
+  const validationSchema = Yup.object().shape({
+    city: Yup.string().required().label("City"),
+    date: Yup.string().required().label("Date"),
+  });
+  
+  const handleSubmit = async (data: FormData) => {
     console.log(data);
   }
 
@@ -17,6 +23,7 @@ function NewCity() {
     <Form 
         initialValues={{ city: "", date: "" }}
         onSubmit={handleSubmit}
+        validationSchema={validationSchema}
       >
         <View>
           <AppText style={styles.inputTitle}>City Name</AppText>
@@ -92,5 +99,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   }
 });
-export type FixMeLater = any
+
+interface FormData {
+  city: string;
+  date: string;
+}
+
 export default NewCity;
