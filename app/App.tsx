@@ -9,13 +9,12 @@ import AuthContext from "./src/auth/context";
 import authStorage from "./src/auth/storage";
 
 export default function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState('');
   const [isReady, setIsReady] = useState(false);
 
-  const restoreUser = async () => {
+  const restoreUser = async (): Promise<void> => {
     const user = await authStorage.getUser()
     if(user) setUser(user);
-    return user;
   }
 
   if(!isReady) return (
