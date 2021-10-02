@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Text } from "react-native";
 
 import defaultStyles from "../constants/styles";

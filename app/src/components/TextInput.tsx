@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyles from "../constants/styles";
 import { colors } from "../constants/theme";

@@ -13,6 +13,7 @@ import { planDetails } from "../../constants/mocks";
 
 function PlanDetails({ route }: any) {
   const { id } = route.params;
+  console.log(id);
   const userPreference = { isLiked: false, isBookMarked: false}
   
   const dataToComponent = {...planDetails, ...userPreference};

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet, GestureResponderEvent } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import styles from "../constants/styles";
 
 import defaultStyles from "../constants/styles";

@@ -1,5 +1,4 @@
 import {ApiResponse, create} from 'apisauce';
-import { Platform } from "react-native";
 // import cache from '../utils/cache';
 import authStorage from '../auth/storage'
 

@@ -27,10 +27,4 @@ interface Props {
   [otherProps:string]: any,
 }
 
-interface FormFields {
-  errors: any,
-  values: any,
-  touched: any,
-}
-
 export default AppFormField;
