@@ -18,7 +18,7 @@ const colors = {
   lightGreen2: '#ddffda',
   red: '#ff0054',
   transparent: '#00000000'
-};
+} as { [key: string]: string; };
 
 const sizes = {
   // global sizes
@@ -41,7 +41,7 @@ const sizes = {
   header: 16,
   body: 14,
   caption: 12
-};
+} as { [key: string]: number; };
 
 const fonts = {
   h1: {
@@ -65,6 +65,6 @@ const fonts = {
   caption: {
     fontSize: sizes.caption
   }
-};
+} as { [key: string]: Object; };
 
 export { colors, sizes, fonts };

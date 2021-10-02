@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, GestureResponderEvent } from "react-native";
 import styles from "../constants/styles";
 
 import defaultStyles from "../constants/styles";
 import { colors } from "../constants/theme";
 
-export default function AppButton({title, onPress, color="white", backgroundColor="primary", style}) {
+export default function AppButton({title, onPress, color="white", backgroundColor="primary", style}: Props) {
   return (
     <TouchableOpacity
       style={[
@@ -26,3 +26,11 @@ const customStyles = StyleSheet.create({
     letterSpacing: 1
   }
 });
+
+interface Props {
+  title: string, 
+  onPress: Function | any, 
+  color?: string,
+  backgroundColor?: string, 
+  style?: Object
+}

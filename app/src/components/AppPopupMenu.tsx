@@ -5,15 +5,13 @@ import { Menu, MenuItem } from 'react-native-material-menu';
 import { colors } from "../constants/theme";
 import AppIcons from "./AppIcons";
 
-function AppPopupMenu({actions, onPress}) {
+function AppPopupMenu({actions, onPress}: Props) {
   const [visible, setVisible] = useState(false);
 
   const handleMenuPress = () => setVisible(true);
 
-  const handleOptionSelect = (option) => {
-    if (option) {
-      onPress(option)
-    }
+  const handleOptionSelect = (option: string) => {
+    onPress(option)
     setVisible(false);
   }
 
@@ -24,7 +22,7 @@ function AppPopupMenu({actions, onPress}) {
   )
 
   const Options = () => (
-    actions.map((option, index) => (
+    actions.map((option: string, index: number) => (
       <MenuItem key={index} onPress={() => handleOptionSelect(option)}>{option}</MenuItem>
     ))
   )
@@ -34,12 +32,17 @@ function AppPopupMenu({actions, onPress}) {
       <Menu
         visible={visible}
         anchor={<MenuIcon />}
-        onRequestClose={handleOptionSelect}
+        onRequestClose={() => setVisible(false)}
       >
         <Options />
       </Menu>
     </View>
   )
+}
+
+interface Props {
+  actions: any | string[], 
+  onPress: Function
 }
 
 export default AppPopupMenu;

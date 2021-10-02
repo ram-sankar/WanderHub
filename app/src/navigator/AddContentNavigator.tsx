@@ -10,8 +10,8 @@ import NewPost from '../screens/AddContent/NewPost';
 
 const AddContentStack = createNativeStackNavigator();
 
-export default function AddContentNavigator({ navigation, route }) {
-  const routeName = getFocusedRouteNameFromRoute (route);
+export default function AddContentNavigator({ navigation, route }: Props) {
+  const routeName = getFocusedRouteNameFromRoute (route) || '';
   const tabShouldNotVisible = [routes.PLAN_DETAILS]
 
   React.useLayoutEffect(() => {
@@ -29,4 +29,9 @@ export default function AddContentNavigator({ navigation, route }) {
       <AddContentStack.Screen name={routes.NEW_CITY} component={NewCity} />
     </AddContentStack.Navigator>
   );
+}
+
+interface Props {
+  navigation: any, 
+  route: any
 }

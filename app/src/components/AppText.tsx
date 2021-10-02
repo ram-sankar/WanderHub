@@ -12,7 +12,7 @@ function AppText({ children, style, ...otherProps }: Props): JSX.Element {
 }
 
 interface Props {
-  children: any,
+  children: React.ReactNode,
   style?: any,
   [otherProps:string]: any,
 }

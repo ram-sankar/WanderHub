@@ -15,4 +15,4 @@ export default Object.freeze({
   ADD_CONTENT_SCREEN: "AddContentScreen",
   NEW_POST: "NewPost",
   NEW_CITY: "NewCity",
-})
+} as { [key: string]: string; })

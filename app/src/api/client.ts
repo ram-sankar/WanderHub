@@ -1,4 +1,4 @@
-import {create} from 'apisauce';
+import {ApiResponse, create} from 'apisauce';
 import { Platform } from "react-native";
 // import cache from '../utils/cache';
 import authStorage from '../auth/storage'
@@ -16,7 +16,7 @@ apiClient.addAsyncRequestTransform(async (request) => {
 const { get } = apiClient;
 
 apiClient.get = async (url, params, axiosConfig) => {
-  const response = await get(url, params, axiosConfig);
+  const response = await get(url, params, axiosConfig) as ApiResponse<any, any>;
 
   // if (response.ok) {
   //     cache.store(url, response.data);

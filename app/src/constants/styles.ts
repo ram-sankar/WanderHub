@@ -33,4 +33,4 @@ export default {
     shadowRadius: 2,
     elevation: 2,
   }
-};
+} as { [key: string]: Object; };

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Modal, StyleSheet } from "react-native";
 
-function AppModal({ isModalVisible, children, height, width, ...rest }) {
+function AppModal({ isModalVisible, children, height, width, ...rest }: Props) {
   
   return (
     <Modal
@@ -10,7 +10,7 @@ function AppModal({ isModalVisible, children, height, width, ...rest }) {
       {...rest}
     >
       <View style={styles.centeredView}>
-        <View style={styles.modalView(height, width)}>
+        <View style={[styles.modalView, {height: height, width: width}]}>
           {children}
         </View>
       </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22
   },
-  modalView: (height, width) => ({
+  modalView: {
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -38,9 +38,16 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
-    height: height,
-    width: width,
-  }),
+    elevation: 5
+  },
 });
+
+interface Props {
+  isModalVisible: boolean,
+  children: React.ReactNode, 
+  height: number, 
+  width: number,
+  [rest:string]: any,
+}
+
 export default AppModal;

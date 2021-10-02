@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView, View } from "react-native";
 
 import { colors } from "../constants/theme";
 
-function AppScreen({ children, style }) {
+function AppScreen({ children, style }: Props) {
   return (
     <SafeAreaView style={[styles.screen, style]}>
       <View style={[styles.view, style]}>{children}</View>
@@ -24,5 +24,10 @@ const styles = StyleSheet.create({
     width: '100%'
   },
 });
+
+interface Props {
+  children: React.ReactNode,
+  style?: Object,
+}
 
 export default AppScreen;

@@ -9,8 +9,8 @@ import styles from "../constants/styles";
 
 const ExploreStack = createNativeStackNavigator();
 
-export default function AuthNavigator({ navigation, route }) {
-  const routeName = getFocusedRouteNameFromRoute (route);
+export default function AuthNavigator({ navigation, route }: Props) {
+  const routeName = getFocusedRouteNameFromRoute (route) || '';
   const tabShouldNotVisible = [routes.PLAN_DETAILS]
 
   React.useLayoutEffect(() => {
@@ -27,4 +27,9 @@ export default function AuthNavigator({ navigation, route }) {
       <ExploreStack.Screen name={routes.PLAN_DETAILS} component={PlanDetails} />
     </ExploreStack.Navigator>
   );
+}
+
+interface Props {
+  navigation: any, 
+  route: any
 }
