@@ -1,7 +1,7 @@
 import React from "react";
 import { AntDesign, Ionicons, FontAwesome5, Feather, MaterialCommunityIcons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
-function AppIcons({Icon, forwardedRef, ...props}) {
+function AppIcons({Icon, forwardedRef, ...props}: Props) {
   switch (Icon) {
     case 'Ionicons':
       return <Ionicons ref={forwardedRef} {...props}/>
@@ -21,6 +21,12 @@ function AppIcons({Icon, forwardedRef, ...props}) {
       console.log(`${Icon} not found`)
       return null;
   }
+}
+
+interface Props {
+  Icon: string,
+  forwardedRef?: any
+  [props:string]: any;
 }
 
 export default AppIcons;

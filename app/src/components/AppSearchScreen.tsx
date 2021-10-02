@@ -5,12 +5,13 @@ import { colors } from "../constants/theme";
 import AppIcons from "./AppIcons";
 import TextInput from "./TextInput";
 
-function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, submitSearch, ...rest }) {
+
+function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, submitSearch, ...rest }: Props) {
   const [searchText, setSearchText] = useState('');
-  const inputEl = useRef(null);
+  const inputEl: any = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => inputEl.current.focus(), 100)
+    setTimeout(() => inputEl?.current?.focus(), 100)
   }, [])
 
   return (
@@ -68,4 +69,13 @@ const styles = StyleSheet.create({
     marginRight: 5
   }
 });
+
+interface Props {
+  isModalVisible: boolean,
+  setIsModalVisible: Function,
+  placeholderText?: string,
+  submitSearch: Function,
+  [rest:string]: any,
+}
+
 export default AppSearchScreen;

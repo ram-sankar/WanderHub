@@ -2,9 +2,9 @@ import React from "react";
 import { Image, TouchableOpacity, StyleSheet } from "react-native";
 import { NavigationContext } from '@react-navigation/native';
 
-function Avatar({ source, navigateTo="Profile", style }) {
+function Avatar({ source, navigateTo="Profile", style }: Props) {
   const navigation = React.useContext(NavigationContext);
-  const navigateToPage = () => navigateTo ? navigation.navigate(navigateTo) : null;
+  const navigateToPage = () => navigateTo ? navigation?.navigate(navigateTo) : null;
 
   return (
     <TouchableOpacity onPress={navigateToPage} style={style}>
@@ -19,4 +19,10 @@ const styles = StyleSheet.create({
     width: 40
   }
 });
+
+interface Props {
+  source: {},
+  style: {},
+  navigateTo: string
+}
 export default Avatar;
