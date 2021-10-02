@@ -11,7 +11,7 @@ function SubmitButton({ title, style }: Props) {
 
 interface Props {
   title: string,
-  style: Object
+  style?: Object
 }
 
 export default SubmitButton;

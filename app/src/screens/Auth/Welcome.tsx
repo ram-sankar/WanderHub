@@ -7,7 +7,7 @@ import { colors } from "../../constants/theme";
 import AppScreen from "../../components/AppScreen";
 import routes from "../../navigator/routes";
 
-function Welcome({navigation}) {
+function Welcome({navigation}: any) {
   return (
     <AppScreen style={styles.container}>
       <View style={styles.headingContainer}>

@@ -9,7 +9,7 @@ import { Form, FormField, SubmitButton } from "../../components/forms";
 
 function NewCity() {
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data: FixMeLater) => {
     console.log(data);
   }
 
@@ -34,7 +34,7 @@ function NewCity() {
             placeholder="Date of Visit"
           />
         </View>
-        <SubmitButton title="Add City" style={styles.loginButton}/>
+        <SubmitButton title="Add City" />
       </Form>
   )
 
@@ -92,4 +92,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
   }
 });
+export type FixMeLater = any
 export default NewCity;

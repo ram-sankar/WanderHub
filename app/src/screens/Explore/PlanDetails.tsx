@@ -11,7 +11,7 @@ import Itinerary from "./Itinerary";
 import Contact from "./Contact";
 import { planDetails } from "../../constants/mocks";
 
-function PlanDetails({ route }) {
+function PlanDetails({ route }: any) {
   const { id } = route.params;
   const userPreference = { isLiked: false, isBookMarked: false}
   
@@ -22,16 +22,21 @@ function PlanDetails({ route }) {
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])
 
-  const handleTabChange = (tab, index) => {
+  const handleTabChange = (tab: string, index: number) => {
     setActiveTab(tab);
     setRenderContent(tabComponents[index])
   }
+  
   const RenderTabs = () => (
-    tabHeaders.map((tab, index) => (
-    <Pressable style={[styles.tabHeaderContainer, activeTab===tab && styles.activeTab]} onPress={() => handleTabChange(tab, index)} key={index}>
-        <AppText style={[styles.tabHeaderText, activeTab===tab && styles.activeText]}>{tab}</AppText>
-    </Pressable>
-  )))
+    <>
+      {tabHeaders.map((tab, index) => (
+        <Pressable style={[styles.tabHeaderContainer, activeTab===tab && styles.activeTab]} onPress={() => handleTabChange(tab, index)} key={index}>
+            <AppText style={[styles.tabHeaderText, activeTab===tab && styles.activeText]}>{tab}</AppText>
+        </Pressable>
+      ))}
+    </>
+  )
+
   return (
     <AppScreen style={styles.container}>
       <Image style={styles.topImage} source={planDetails.image} />

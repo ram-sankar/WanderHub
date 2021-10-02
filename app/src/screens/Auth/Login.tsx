@@ -7,41 +7,33 @@ import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { ErrorMessage, Form, FormField, SubmitButton } from "../../components/forms";
 import { colors, sizes } from "../../constants/theme";
-import userApi from "../../api/user"
+import authApi from "../../api/auth"
 import useAuth from "../../auth/useAuth";
 import routes from "../../navigator/routes";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().min(3).label("User Name"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(8).label("Password"),
 });
 
-function Register({navigation}) {
+function Login({navigation}: any) {
   const auth = useAuth();
-  const [registerFailed, setRegisterFailed] = useState(null);
-  const initialValues= { name: "jonas", email: "jonasK@dark.com", password: "martha_jonas" };
+  const [loginFailed, setLoginFailed] = useState(false);
 
-  const handleSubmit = async (data) => {
-    const result = await userApi.register(data)
-    if(!result.ok) return setRegisterFailed(result.data);
-    setRegisterFailed(null);
-    auth.logIn(result.headers["x-auth-token"])
+  const handleSubmit = async ({email, password}: FormData) => {
+    const result = await authApi.login(email, password)
+    if(!result.ok) return setLoginFailed(true);
+    setLoginFailed(false);
+    auth.logIn(result?.headers?.["x-auth-token"] || '')
   }
 
-  const RegisterForm = () => (
+  const LoginForm = () => (
     <Form 
-        initialValues={initialValues}
+        initialValues={{ email: "jonasK@dark.com", password: "martha_jonas" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        {registerFailed && <ErrorMessage error={registerFailed} visible={registerFailed}/>}
-        <FormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          name="name"
-          placeholder="User Name"
-        />
+        <ErrorMessage error="Invalid email and/or password." visible={loginFailed}/>
         <FormField
           autoCapitalize="none"
           autoCorrect={false}
@@ -58,20 +50,21 @@ function Register({navigation}) {
           secureTextEntry
           textContentType="password"
         />
-        <SubmitButton title="SIGN UP" style={styles.registerButton}/>
+        <SubmitButton title="LOG IN" style={styles.loginButton}/>
       </Form>
   )
 
   return (
     <AppScreen style={styles.container}>
-      <ScrollView style={styles.scrollViewContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <BackButton/>
-        <AppText style={styles.headingText}>Create your account</AppText>
-        <RegisterForm/>
-        <Pressable style={styles.loginButton} onPress={() => navigation.navigate(routes.LOGIN)}>
-          <AppText style={[styles.forgotPassword, styles.loginContainer]}>
-            Already have an account?
-            <AppText style={styles.login}> LOG IN</AppText>
+        <AppText style={styles.headingText}>Welcome Back!</AppText>
+        <LoginForm/>
+        <AppText style={styles.forgotPassword}>Forgot your password?</AppText>
+        <Pressable onPress={() => navigation.navigate(routes.REGISTER)}>
+          <AppText style={[styles.forgotPassword, styles.signUpContainer]}>
+            Don't have an account?
+            <AppText style={styles.signUp}> SIGN UP</AppText>
           </AppText>
         </Pressable>
       </ScrollView>
@@ -90,14 +83,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '20%'
   },
-  registerText: {
+  loginText: {
     textAlign: 'center',
     marginTop: 30,
     marginBottom: 20,
     fontWeight: '700',
     fontSize: sizes.fontL
   },
-  registerButton: {
+  loginButton: {
     width: '100%',
     marginTop: 20,
     fontWeight: '700',
@@ -108,15 +101,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 15,
   },
-  login: {
+  signUp: {
     color: colors.primary,
     fontWeight: '700',
     alignItems: 'flex-start',
   },
-  loginContainer: {
+  signUpContainer: {
     // marginTop: 'auto'
     alignItems: 'flex-start',
   }
 });
 
-export default Register;
+interface FormData {
+  email: string,
+  password: string
+}
+
+export default Login;

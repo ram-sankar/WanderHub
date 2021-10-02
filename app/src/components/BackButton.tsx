@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  style: {},
-  size: number,
-  backGround: string
+  style?: Object,
+  size?: number,
+  backGround?: string
 }
 export default BackButton;

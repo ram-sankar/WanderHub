@@ -5,11 +5,11 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { colors, sizes } from "../../constants/theme";
 
-function Itinerary({data}) {
+function Itinerary({data}: FixMeLater) {
   const [activeDay, setActiveDay] = useState(1);
 
-  const Bullet = ({places}) => (
-    places.map((place, index) => (
+  const Bullet = ({places}: FixMeLater) => (
+    places.map((place: FixMeLater, index: number) => (
       <View key={index} style={styles.row}>
         <AppText>{'\u2022' + " "}</AppText>
         <AppText style={styles.bulletText}>{place.title}</AppText>
@@ -18,7 +18,7 @@ function Itinerary({data}) {
   )
 
   const RenderDays = () => (
-    data.itinerary.map(day => (
+    data.itinerary.map((day: FixMeLater) => (
       <View style={styles.dayContainer} key={day.day}>
         <Pressable onPress={() => setActiveDay(day.day)}>
           <AppText style={styles.dayHeader}>Day {day.day}: {day.heading}</AppText>
@@ -75,4 +75,5 @@ const styles = StyleSheet.create({
     paddingVertical: 5
   }
 });
+export type FixMeLater = any;
 export default Itinerary;

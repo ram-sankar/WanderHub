@@ -8,14 +8,14 @@ import { colors, sizes } from "../../constants/theme";
 
 const screenWidth = Dimensions.get('window').width;
 
-function Posts({data}) {
+function Posts({data}: Props) {
   
   const menuActions = ['Edit', 'Remove']
-  const onPopupEvent = (eventName) => {
+  const onPopupEvent = (eventName: any) => {
     console.log(eventName);
   }
 
-  const PostCard = ({item}) => {
+  const PostCard = ({item}: FixMeLater) => {
     if (item) {
       return (
         <TouchableOpacity style={styles.postContainer}>
@@ -23,9 +23,9 @@ function Posts({data}) {
           <View style={styles.postContent}>
             <View style={styles.postTextContainer}>
               <AppText style={styles.postName}>{item.name}</AppText>
-              <AppText style={styles.postPlace}>{item.place}</AppText>
+              <AppText>{item.place}</AppText>
             </View>
-            <AppPopupMenu actions={menuActions} style={styles.menuIcon} onPress={onPopupEvent} />
+            <AppPopupMenu actions={menuActions} onPress={onPopupEvent} />
           </View>
         </TouchableOpacity>
       )
@@ -82,4 +82,10 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
+
+export type FixMeLater = any;
+interface Props {
+  data: FixMeLater
+}
+
 export default Posts;

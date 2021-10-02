@@ -1,15 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-import AppIcons from "../../components/AppIcons";
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { colors, sizes } from "../../constants/theme";
 
 const iconColor = colors.gray5;
-const iconSize = 22;
 
-function Contact({data}) {
+function Contact({data}: FixMeLater) {
   
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -41,7 +39,6 @@ function Contact({data}) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 0,
     paddingHorizontal: 10,
     paddingTop: 10
   },
@@ -96,4 +93,5 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
+export type FixMeLater = any;
 export default Contact;

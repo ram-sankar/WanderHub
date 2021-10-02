@@ -15,8 +15,8 @@ function AppForm({ initialValues, onSubmit, validationSchema, children }: Props)
 
 interface Props {
   initialValues: FormikValues,
-  onSubmit: ((values: FormikValues, formikHelpers: FormikHelpers<FormikValues>) => void | Promise<any>),
-  validationSchema: Object,
+  onSubmit: any,
+  validationSchema?: Object,
   children: React.ReactNode,
 }
 

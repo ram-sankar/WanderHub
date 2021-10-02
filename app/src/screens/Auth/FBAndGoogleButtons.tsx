@@ -11,14 +11,14 @@ function FBAndGoogleButtons() {
   return (
     <View style={styles.fBAndGoogleButtonContainer}>
       <TouchableOpacity style={styles.fbButton} onPress={handleGoogleLogin}>
-        <AppIcons Icon='FontAwesome5' style={styles.likesIcon} name='facebook-f' size={24} color={colors.white}/>
+        <AppIcons Icon='FontAwesome5' name='facebook-f' size={24} color={colors.white}/>
         <AppText style={styles.fbButtonText}>
           CONTINUE WITH FACEBOOK
         </AppText>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogin}>
-        <AppIcons Icon='AntDesign' style={styles.likesIcon} name='google' size={24} color={colors.primary}/>
+        <AppIcons Icon='AntDesign' name='google' size={24} color={colors.primary}/>
         <AppText style={styles.googleButtonText}>
           CONTINUE WITH GOOGLE
         </AppText>

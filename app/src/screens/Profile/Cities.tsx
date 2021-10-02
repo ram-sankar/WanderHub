@@ -5,17 +5,19 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { colors, sizes } from "../../constants/theme";
 
-function Cities({data}) {
+function Cities({data}: FixMeLater) {
 
   const RenderCityList = () => (
-    data.map((city) => (
-      <View key={city.id} style={styles.cardContainer}>
-        <AppText style={styles.cityName}>
-          {city.name}, {city.state}
-        </AppText>
-        <AppText style={styles.date}>{city.date}</AppText>
-      </View>
-    ))
+    <>
+      {data.map((city: FixMeLater) => (
+        <View key={city.id} style={styles.cardContainer}>
+          <AppText style={styles.cityName}>
+            {city.name}, {city.state}
+          </AppText>
+          <AppText style={styles.date}>{city.date}</AppText>
+        </View>
+      ))}
+    </>
   )
 
   return (
@@ -49,4 +51,5 @@ const styles = StyleSheet.create({
     fontSize: sizes.font
   }
 });
+export type FixMeLater = any;
 export default Cities;

@@ -11,7 +11,7 @@ import { numberWithCommas } from "../../common/helperFunctions";
 const iconColor = colors.gray5;
 const iconSize = 22;
 
-function Overview({data}) {
+function Overview({data}: FixMeLater) {
 
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -25,28 +25,28 @@ function Overview({data}) {
   const IconTray = () => (
     <View style={styles.iconsTray}>
         <View style={styles.iconBox}>
-          <Feather style={styles.likesIcon} name="bookmark" size={iconSize} color={iconColor}/>
+          <Feather name="bookmark" size={iconSize} color={iconColor}/>
           <AppText style={styles.iconText}>Bookmark</AppText>
         </View>
         <View style={styles.iconBox}>
-          <Ionicons style={styles.likesIcon} name="heart-outline" size={iconSize} color={iconColor}/>
+          <Ionicons name="heart-outline" size={iconSize} color={iconColor}/>
           <AppText style={styles.iconText}>{data.likes} Likes</AppText>
         </View>
         <View style={styles.iconBox}>
-          <FontAwesome5 style={styles.likesIcon} name="eye" size={iconSize} color={iconColor}/>
+          <FontAwesome5 name="eye" size={iconSize} color={iconColor}/>
           <AppText style={styles.iconText}>{data.views} Views</AppText>
         </View>
         <View style={styles.iconBox}>
-          <MaterialCommunityIcons style={styles.likesIcon} name="share" size={iconSize} color={iconColor} />
+          <MaterialCommunityIcons name="share" size={iconSize} color={iconColor} />
           <AppText style={styles.iconText}>Share</AppText>
         </View>
       </View>
   );
 
   const IncludedItem = () => (
-    data.inclusion.map((item, index) => (
+    data.inclusion.map((item: FixMeLater, index: number) => (
       <View style={styles.includedIconBox} key={index}>
-        <AppIcons Icon={item.iconType} style={styles.likesIcon} name={item.iconName} size={iconSize} color={iconColor}/>
+        <AppIcons Icon={item.iconType} name={item.iconName} size={iconSize} color={iconColor}/>
         <AppText style={styles.iconText}>{item.name}</AppText>
       </View>
   )))
@@ -57,7 +57,7 @@ function Overview({data}) {
       <TopSection />
       <IconTray />
       <AppText style={styles.subHeading}>Included</AppText>
-      <View style={[styles.iconsTray, styles.includedItemTray]}>
+      <View style={[styles.iconsTray]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <IncludedItem />
         </ScrollView>
@@ -133,4 +133,5 @@ const styles = StyleSheet.create({
     textAlign: 'justify'
   }
 });
+export type FixMeLater = any;
 export default Overview;

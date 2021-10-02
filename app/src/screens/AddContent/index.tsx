@@ -11,11 +11,11 @@ function AddContent() {
   const navigation = React.useContext(NavigationContext);
 
   const onNewCityClick = () => {
-    navigation.navigate(routes.NEW_CITY);
+    navigation?.navigate(routes.NEW_CITY);
   }
 
   const onNewPostClick = () => {
-    navigation.navigate(routes.NEW_POST);
+    navigation?.navigate(routes.NEW_POST);
   }
 
   return (

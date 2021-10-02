@@ -17,16 +17,18 @@ function Profile() {
   const [activeTab, setActiveTab] = useState(tabHeaders[0]);
   const [renderContent, setRenderContent] = useState(tabComponents[0])
 
-  const handleTabChange = (tab, index) => {
+  const handleTabChange = (tab: string, index: number) => {
     setActiveTab(tab);
     setRenderContent(tabComponents[index])
   }
   const RenderTabs = () => (
-    tabHeaders.map((tab, index) => (
-    <Pressable style={[styles.tabHeaderContainer, activeTab===tab && styles.activeTab]} onPress={() => handleTabChange(tab, index)} key={index}>
-        <AppText style={[styles.tabHeaderText, activeTab===tab && styles.activeText]}>{tab}</AppText>
-    </Pressable>
-  )))
+  <>
+    {tabHeaders.map((tab, index) => (
+      <Pressable style={[styles.tabHeaderContainer, activeTab===tab && styles.activeTab]} onPress={() => handleTabChange(tab, index)} key={index}>
+          <AppText style={[styles.tabHeaderText, activeTab===tab && styles.activeText]}>{tab}</AppText>
+      </Pressable>
+    ))}
+  </>)
 
   const Stats = () => (
     <View style={styles.statsContainer}>

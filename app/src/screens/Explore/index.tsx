@@ -17,7 +17,7 @@ function Explore() {
   const navigation = React.useContext(NavigationContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const submitSearch = (searchText) => {
+  const submitSearch = (searchText: any) => {
     setIsModalVisible(false);
     console.log(searchText.nativeEvent.text);
   }
@@ -40,8 +40,8 @@ function Explore() {
     </View>
   )
 
-  const RenderList = ({item}) => (
-      <Pressable onPress={() => navigation.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem}>
+  const RenderList = ({item}: FixMeLater) => (
+      <Pressable onPress={() => navigation?.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem}>
         <Image source={item.image} style={styles.listImage} />
         <View style={styles.listBody}>
           <AppText style={styles.listTitle}>{item.title}</AppText>
@@ -59,9 +59,9 @@ function Explore() {
             <AppText style={styles.ownerName}>{item.ownerName}</AppText>
             <View style={styles.likesContainer}>
               <Ionicons style={styles.likesIcon} name="heart-outline" size={16} />
-              <AppText style={styles.likesText}>{item.likes}</AppText>
+              <AppText>{item.likes}</AppText>
               <FontAwesome5 style={styles.likesIcon} name="eye" size={16} />
-              <AppText style={styles.likesText}>{item.views}</AppText>
+              <AppText>{item.views}</AppText>
             </View>
           </View>
         </View>
@@ -164,4 +164,5 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
+export type FixMeLater = any;
 export default Explore;
