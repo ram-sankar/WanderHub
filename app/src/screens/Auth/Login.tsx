@@ -10,6 +10,7 @@ import { colors, sizes } from "../../constants/theme";
 import authApi from "../../api/auth"
 import useAuth from "../../auth/useAuth";
 import routes from "../../navigator/routes";
+import { LoginFormData } from "../../constants/models/Auth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -20,7 +21,7 @@ function Login({navigation}: any) {
   const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
-  const handleSubmit = async ({email, password}: FormData) => {
+  const handleSubmit = async ({email, password}: LoginFormData) => {
     const result = await authApi.login(email, password)
     if(!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
@@ -111,10 +112,5 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   }
 });
-
-interface FormData {
-  email: string,
-  password: string
-}
 
 export default Login;

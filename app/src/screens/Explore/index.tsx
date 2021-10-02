@@ -10,6 +10,7 @@ import { colors, sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 import routes from "../../navigator/routes";
 import { exploreHome } from "../../constants/mocks";
+import { ExploreEntity } from "../../constants/models/Explore";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -40,7 +41,7 @@ function Explore() {
     </View>
   )
 
-  const RenderList = ({item}: FixMeLater) => (
+  const RenderList = ({item}: {item: ExploreEntity}) => (
       <Pressable onPress={() => navigation?.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem}>
         <Image source={item.image} style={styles.listImage} />
         <View style={styles.listBody}>
@@ -164,5 +165,4 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
-export type FixMeLater = any;
 export default Explore;

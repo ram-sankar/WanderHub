@@ -6,6 +6,7 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { Form, FormField, SubmitButton } from "../../components/forms";
+import { NewPostEntity } from "../../constants/models/AddContent";
 import { colors, sizes } from "../../constants/theme";
 
 function NewPost() {
@@ -16,7 +17,7 @@ function NewPost() {
     date: Yup.string().label("Date"),
   });
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async (data: NewPostEntity) => {
     console.log(data);
   }
 
@@ -110,11 +111,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
   }
 });
-
-interface FormData {
-  title: string;
-  date: string;
-  place: string;
-}
 
 export default NewPost;

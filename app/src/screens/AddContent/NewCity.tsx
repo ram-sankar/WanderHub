@@ -7,6 +7,7 @@ import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { colors, sizes } from "../../constants/theme";
 import { Form, FormField, SubmitButton } from "../../components/forms";
+import { NewCityEntity } from "../../constants/models/AddContent";
 
 function NewCity() {
 
@@ -15,7 +16,7 @@ function NewCity() {
     date: Yup.string().required().label("Date"),
   });
   
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async (data: NewCityEntity) => {
     console.log(data);
   }
 
@@ -99,10 +100,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
   }
 });
-
-interface FormData {
-  city: string;
-  date: string;
-}
 
 export default NewCity;

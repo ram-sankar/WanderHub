@@ -10,6 +10,7 @@ import { colors, sizes } from "../../constants/theme";
 import userApi from "../../api/user"
 import useAuth from "../../auth/useAuth";
 import routes from "../../navigator/routes";
+import { RegisterFormData } from "../../constants/models/Auth";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(3).label("User Name"),
@@ -22,7 +23,7 @@ function Register({navigation}: any) {
   const [registerFailed, setRegisterFailed] = useState(null);
   const initialValues= { name: "jonas", email: "jonasK@dark.com", password: "martha_jonas" };
 
-  const handleSubmit = async (data: FixMeLater ) => {
+  const handleSubmit = async (data: RegisterFormData) => {
     const result = await userApi.register(data)
     if(!result.ok) return setRegisterFailed(result?.data as any);
     setRegisterFailed(null);
@@ -114,10 +115,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   loginContainer: {
-    // marginTop: 'auto'
     alignItems: 'flex-start',
   }
 });
 
-export type FixMeLater = any;
 export default Register;

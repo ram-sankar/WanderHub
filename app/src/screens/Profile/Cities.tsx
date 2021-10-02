@@ -3,13 +3,14 @@ import { View, StyleSheet } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
+import { City } from "../../constants/models/Profile";
 import { colors, sizes } from "../../constants/theme";
 
-function Cities({data}: FixMeLater) {
+function Cities({data}: {data: City[]}) {
 
   const RenderCityList = () => (
     <>
-      {data.map((city: FixMeLater) => (
+      {data.map((city: City) => (
         <View key={city.id} style={styles.cardContainer}>
           <AppText style={styles.cityName}>
             {city.name}, {city.state}
@@ -51,5 +52,5 @@ const styles = StyleSheet.create({
     fontSize: sizes.font
   }
 });
-export type FixMeLater = any;
+
 export default Cities;

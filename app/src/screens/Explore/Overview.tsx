@@ -7,11 +7,12 @@ import AppText from "../../components/AppText";
 import AppIcons from "../../components/AppIcons";
 import { colors, sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
+import { InclusionEntity, PlanDetailsEntity } from "../../constants/models/Explore";
 
 const iconColor = colors.gray5;
 const iconSize = 22;
 
-function Overview({data}: FixMeLater) {
+function Overview({data}: {data: PlanDetailsEntity}) {
 
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -44,12 +45,15 @@ function Overview({data}: FixMeLater) {
   );
 
   const IncludedItem = () => (
-    data.inclusion.map((item: FixMeLater, index: number) => (
-      <View style={styles.includedIconBox} key={index}>
-        <AppIcons Icon={item.iconType} name={item.iconName} size={iconSize} color={iconColor}/>
-        <AppText style={styles.iconText}>{item.name}</AppText>
-      </View>
-  )))
+    <>
+      {data.inclusion.map((item: InclusionEntity, index: number) => (
+        <View style={styles.includedIconBox} key={index}>
+          <AppIcons Icon={item.iconType} name={item.iconName} size={iconSize} color={iconColor}/>
+          <AppText style={styles.iconText}>{item.name}</AppText>
+        </View>
+      ))}
+    </>
+  )
 
   return (
     <AppScreen style={styles.container}>
@@ -133,5 +137,4 @@ const styles = StyleSheet.create({
     textAlign: 'justify'
   }
 });
-export type FixMeLater = any;
 export default Overview;

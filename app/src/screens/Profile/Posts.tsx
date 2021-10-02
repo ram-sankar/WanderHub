@@ -5,17 +5,18 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import AppPopupMenu from "../../components/AppPopupMenu";
 import { colors, sizes } from "../../constants/theme";
+import { Post } from "../../constants/models/Profile";
 
 const screenWidth = Dimensions.get('window').width;
 
-function Posts({data}: Props) {
+function Posts({data}: {data: Post[]}) {
   
   const menuActions = ['Edit', 'Remove']
   const onPopupEvent = (eventName: any) => {
     console.log(eventName);
   }
 
-  const PostCard = ({item}: FixMeLater) => {
+  const PostCard = ({item}: {item: Post}) => {
     if (item) {
       return (
         <TouchableOpacity style={styles.postContainer}>
@@ -82,10 +83,5 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
-
-export type FixMeLater = any;
-interface Props {
-  data: FixMeLater
-}
 
 export default Posts;

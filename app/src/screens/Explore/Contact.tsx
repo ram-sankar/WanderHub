@@ -3,11 +3,12 @@ import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
+import { PlanDetailsEntity } from "../../constants/models/Explore";
 import { colors, sizes } from "../../constants/theme";
 
 const iconColor = colors.gray5;
 
-function Contact({data}: FixMeLater) {
+function Contact({data}: {data: PlanDetailsEntity}) {
   
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -93,5 +94,4 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontL
   }
 });
-export type FixMeLater = any;
 export default Contact;

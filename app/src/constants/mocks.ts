@@ -1,4 +1,5 @@
 const profileDetails = {
+  id: 1,
   name: "Ram Sankar",
   citiesCount: 200,
   postsCount: 50,

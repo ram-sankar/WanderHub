@@ -3,33 +3,38 @@ import { View, StyleSheet, Pressable } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
+import { ItineraryEntity, PlacesEntity, PlanDetailsEntity } from "../../constants/models/Explore";
 import { colors, sizes } from "../../constants/theme";
 
-function Itinerary({data}: FixMeLater) {
+function Itinerary({data}: {data: PlanDetailsEntity}) {
   const [activeDay, setActiveDay] = useState(1);
 
-  const Bullet = ({places}: FixMeLater) => (
-    places.map((place: FixMeLater, index: number) => (
-      <View key={index} style={styles.row}>
-        <AppText>{'\u2022' + " "}</AppText>
-        <AppText style={styles.bulletText}>{place.title}</AppText>
-      </View>
-    ))
+  const Bullet = ({places}: {places: PlacesEntity[]}) => (
+    <>
+      {places.map((place: PlacesEntity, index: number) => (
+        <View key={index} style={styles.row}>
+          <AppText>{'\u2022' + " "}</AppText>
+          <AppText style={styles.bulletText}>{place.title}</AppText>
+        </View>
+      ))}
+    </>
   )
 
   const RenderDays = () => (
-    data.itinerary.map((day: FixMeLater) => (
-      <View style={styles.dayContainer} key={day.day}>
-        <Pressable onPress={() => setActiveDay(day.day)}>
-          <AppText style={styles.dayHeader}>Day {day.day}: {day.heading}</AppText>
-        </Pressable>
-        {activeDay===day.day && (
-          <View style={styles.bulletContainer}>
-            <Bullet places={day.places}/>
-          </View>
-        )}
-      </View>
-    ))
+    <>
+      {data.itinerary.map((day: ItineraryEntity) => (
+        <View style={styles.dayContainer} key={day.day}>
+          <Pressable onPress={() => setActiveDay(day.day)}>
+            <AppText style={styles.dayHeader}>Day {day.day}: {day.heading}</AppText>
+          </Pressable>
+          {activeDay===day.day && (
+            <View style={styles.bulletContainer}>
+              <Bullet places={day.places}/>
+            </View>
+          )}
+        </View>
+      ))}
+    </>
   )
   return (
     <AppScreen style={styles.container}>
@@ -75,5 +80,4 @@ const styles = StyleSheet.create({
     paddingVertical: 5
   }
 });
-export type FixMeLater = any;
 export default Itinerary;
