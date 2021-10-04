@@ -11,7 +11,10 @@ const screenWidth = Dimensions.get('window').width;
 
 function Posts({data}: {data: Post[]}) {
   
-  const menuActions = ['Edit', 'Remove']
+  const menuActions = [
+    {id: 1, text: 'Edit'},
+    {id: 2, text: 'Remove'},
+  ]
   const onPopupEvent = (eventName: any) => {
     console.log(eventName);
   }
