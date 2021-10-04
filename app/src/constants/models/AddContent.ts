@@ -14,3 +14,5 @@ export interface NewPostEntity {
   date: string;
   place: string;
 }
+
+export type FixMeLater = any;

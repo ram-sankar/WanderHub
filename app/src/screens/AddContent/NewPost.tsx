@@ -1,12 +1,14 @@
+import { FieldArrayRenderProps } from "formik";
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import * as Yup from "yup";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { Form, FormField, SubmitButton } from "../../components/forms";
-import { NewPostEntity } from "../../constants/models/AddContent";
+import AppFieldArray from "../../components/forms/AppFieldArray";
+import { FixMeLater, NewPostEntity } from "../../constants/models/AddContent";
 import { colors, sizes } from "../../constants/theme";
 
 function NewPost() {
@@ -21,9 +23,35 @@ function NewPost() {
     console.log(data);
   }
 
+  const FormSectionList = ({arrayHelpers, index, friend}: FormSectionListEntity) => (
+    <View>
+        <FormField name={`friends.${index}`} value={friend}/>
+        <AppText onPress={() => arrayHelpers.remove(index)}>
+          remove
+        </AppText>
+        <AppText onPress={() => arrayHelpers.insert(index+1,`${index}`)}>
+          add
+        </AppText>
+      </View>
+  )
+
+  const RenderFunction = (arrayHelpers: FieldArrayRenderProps, values: any) => (
+    <View>
+      {values.friends && values.friends.length > 0 ? (
+        values.friends.map((friend: any, index: number) => (
+          <FormSectionList key={index} index={index} arrayHelpers={arrayHelpers} friend={friend} />
+        ))
+      ) : (
+        <AppText onPress={() => arrayHelpers.push('')}>
+          Add Section
+        </AppText>
+      )}
+    </View>
+    )
+
   const InputForm = () => (
     <Form 
-        initialValues={{ title: "", date: "", place: "" }}
+        initialValues={{ title: "", date: "", place: "", friends: ['ram1', 'ram2', 'ram3'] }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -54,19 +82,22 @@ function NewPost() {
             placeholder="Date of Visit"
           />
         </View>
+        <AppFieldArray name="friends" RenderFunction={RenderFunction} />
         <SubmitButton title="Post It" />
       </Form>
   )
 
   return (
     <AppScreen style={styles.container}>
-      <BackButton style={styles.backButton} />
-      <View style={styles.headerContainer}>
-        <AppText style={styles.headingText}>Tell us about your last trip</AppText>
-      </View>
-      <View style={styles.inputContainer}>
-        <InputForm />
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <BackButton style={styles.backButton} />
+        <View style={styles.headerContainer}>
+          <AppText style={styles.headingText}>Tell us about your last trip</AppText>
+        </View>
+        <View style={styles.inputContainer}>
+          <InputForm />
+        </View>
+      </ScrollView>
     </AppScreen>
   )
 }
@@ -111,5 +142,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   }
 });
+
+interface FormSectionListEntity {
+  arrayHelpers: FieldArrayRenderProps;
+  index: number;
+  friend: FixMeLater
+}
 
 export default NewPost;
