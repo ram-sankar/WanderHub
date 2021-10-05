@@ -1,7 +1,6 @@
-import React, {useState} from "react";
-import { View, StyleSheet, Platform, Pressable } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import * as Yup from "yup";
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
@@ -9,17 +8,9 @@ import BackButton from "../../components/BackButton";
 import { colors, sizes } from "../../constants/theme";
 import { Form, FormField, SubmitButton } from "../../components/forms";
 import { NewCityEntity } from "../../constants/models/AddContent";
-import AppIcons from "../../components/AppIcons";
+import AppDatePicker from "../../components/forms/AppDatePicker";
 
 function NewCity() {
-  const [date, setDate] = useState(new Date());
-  const [show, setShow] = useState(false);
-
-  const onChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
 
   const validationSchema = Yup.object().shape({
     city: Yup.string().required().label("City"),
@@ -32,7 +23,7 @@ function NewCity() {
 
   const InputForm = () => (
     <Form 
-        initialValues={{ city: "", date: "" }}
+        initialValues={{ city: "", date: new Date().toLocaleDateString() }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -46,27 +37,13 @@ function NewCity() {
         </View>
         <View>
           <AppText style={styles.inputTitle}>Trip Date</AppText>
-          <Pressable onPress={() => setShow(true)} style={styles.selectDateContainer}>
-            <AppText style={styles.selectDateText}>Select a Date</AppText>
-            <AppIcons Icon="AntDesign" name="calendar" size={22} color={colors.black}/>
-          </Pressable>
-          <FormField
-            autoCorrect={false}
+          <AppDatePicker
             name="date"
-            placeholder="Date of Visit"
+            placeholder="Select a Date"
           />
         </View>
         <SubmitButton title="Add City" />
       </Form>
-  )
-
-  const DatePicker = () => (
-    show ? 
-      (<DateTimePicker
-        value={date}
-        onChange={onChange}
-      />) : 
-      (<></>)
   )
 
   return (
@@ -78,7 +55,6 @@ function NewCity() {
       <View style={styles.inputContainer}>
         <InputForm />
       </View>
-      <DatePicker />
     </AppScreen>
   )
 }

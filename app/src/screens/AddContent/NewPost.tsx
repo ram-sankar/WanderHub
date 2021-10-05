@@ -15,10 +15,9 @@ import { colors, sizes } from "../../constants/theme";
 function NewPost() {
   
   const initialValues = { 
-    title: "testT", 
-    place: "chr", 
+    title: "", 
+    place: "", 
     sections: [
-      {title: '', content: ''}, 
       {title: '', content: ''}
     ] 
   }
