@@ -1,9 +1,9 @@
-import { FieldArrayRenderProps } from "formik";
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+import { FieldArrayRenderProps } from "formik";
 import * as Yup from "yup";
-import AppPopupMenu from "../../components/AppPopupMenu";
 
+import AppPopupMenu from "../../components/AppPopupMenu";
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
@@ -16,7 +16,6 @@ function NewPost() {
   
   const initialValues = { 
     title: "testT", 
-    date: "", 
     place: "chr", 
     sections: [
       {title: '', content: ''}, 
@@ -26,7 +25,6 @@ function NewPost() {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(4).label("Title"),
     place: Yup.string().required().label("Place"),
-    date: Yup.string().label("Date"),
   });
 
   const handleSubmit = async (data: NewPostEntity) => {
@@ -112,14 +110,6 @@ function NewPost() {
             autoCorrect={false}
             name="place"
             placeholder="City/Spot name you have visited"
-          />
-        </View>
-        <View>
-          <AppText style={styles.inputTitle}>Trip Date</AppText>
-          <FormField
-            autoCorrect={false}
-            name="date"
-            placeholder="Date of Visit"
           />
         </View>
         <AppFieldArray name="sections" RenderFunction={RenderFunction} />
