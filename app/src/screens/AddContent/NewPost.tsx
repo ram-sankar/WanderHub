@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { FieldArrayRenderProps } from "formik";
 import * as Yup from "yup";
 
@@ -11,8 +11,11 @@ import { Form, FormField, SubmitButton } from "../../components/forms";
 import AppFieldArray from "../../components/forms/AppFieldArray";
 import { NewPostEntity } from "../../constants/models/AddContent";
 import { colors, sizes } from "../../constants/theme";
+import useImagePicker from "../../hooks/useImagePicker";
 
 function NewPost() {
+  const { image, pickImage } = useImagePicker();
+  console.log(image);
   
   const initialValues = { 
     title: "", 
@@ -69,6 +72,10 @@ function NewPost() {
           multiline={true}
           lines={3}
           />
+          <AppText onPress={pickImage}>
+            image
+          </AppText>
+          {image && <Image source={image} style={styles.imageContainer}/>}
       </View>
   )
 
@@ -186,6 +193,10 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     alignSelf: 'center'
+  },
+  imageContainer: {
+    width: 100,
+    height: 100
   }
 });
 
