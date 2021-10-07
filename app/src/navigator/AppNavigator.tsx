@@ -3,12 +3,12 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 import routes from "./routes";
 import Home from '../screens/Home';
-import Profile from "../screens/Profile";
 import Favorite from "../screens/Favorite";
 import ExploreNavigator from "./ExploreNavigator";
 import AddContentNavigator from "./AddContentNavigator";
 import styles from "../constants/styles";
 import AppIcons from "../components/AppIcons";
+import ProfileNavigator from "./ProfileNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,8 +54,8 @@ export default function AppNavigator() {
       }}  
     />
     <Tab.Screen 
-      name={routes.PROFILE}
-      component={Profile}
+      name={routes.PROFILE_TAB}
+      component={ProfileNavigator}
       options={{
         tabBarIcon: ({color, size}) => 
           <AppIcons Icon="MaterialCommunityIcons" name="account" size={size} color={color}/>
