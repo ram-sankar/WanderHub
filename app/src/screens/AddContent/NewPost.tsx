@@ -11,22 +11,24 @@ import { Form, FormField, SubmitButton } from "../../components/forms";
 import AppFieldArray from "../../components/forms/AppFieldArray";
 import { NewPostEntity } from "../../constants/models/AddContent";
 import { colors, sizes } from "../../constants/theme";
-import useImagePicker from "../../hooks/useImagePicker";
+// import useImagePicker from "../../hooks/useImagePicker";
+import FormImagePicker from "../../components/forms/FormImagePicker";
 
 function NewPost() {
-  const { image, pickImage } = useImagePicker();
-  console.log(image);
+  // const { image, pickImage } = useImagePicker();
+  // console.log(image);
   
   const initialValues = { 
-    title: "", 
-    place: "", 
+    title: "aaaa", 
+    place: "aaaa", 
     sections: [
-      {title: '', content: ''}
+      {title: '', content: '', image: ''}
     ] 
   }
   const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(4).label("Title"),
     place: Yup.string().required().label("Place"),
+    image: Yup.string().label("Image"),
   });
 
   const handleSubmit = async (data: NewPostEntity) => {
@@ -44,6 +46,10 @@ function NewPost() {
       arrayHelpers.remove(index)
     }
   }
+
+  // const onImagePickerPress = () => {
+  //   const image = pickImage();
+  // }
 
   const FormSectionList = ({arrayHelpers, index, sectionContent}: FormSectionListEntity) => (
     <View>
@@ -72,10 +78,11 @@ function NewPost() {
           multiline={true}
           lines={3}
           />
-          <AppText onPress={pickImage}>
-            image
-          </AppText>
-          {image && <Image source={image} style={styles.imageContainer}/>}
+          <FormImagePicker
+            name={`sections.${index}.image`}
+            isMultiSelect={true}
+            imageStyle={styles.sectionImage}
+          />
       </View>
   )
 
@@ -195,6 +202,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   imageContainer: {
+    width: 100,
+    height: 100
+  },
+  sectionImage: {
     width: 100,
     height: 100
   }
