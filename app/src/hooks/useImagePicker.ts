@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
 
 export default function useImagePicker() {
-  const [image, setImage] = useState<any>(null);
   const requestPermission = async() => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -11,15 +10,21 @@ export default function useImagePicker() {
   }
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
-    if (!result.cancelled) {
-      setImage(result);
+      if (!result.cancelled) {
+        return result;
+      }
+      return null;
+    } catch (error) {
+      console.log(error)
+      return null;
     }
   };
 
@@ -27,5 +32,5 @@ export default function useImagePicker() {
     requestPermission();
   }, [])
 
-  return { image, pickImage }
+  return { pickImage }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, Image } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { FieldArrayRenderProps } from "formik";
 import * as Yup from "yup";
 
@@ -11,12 +11,10 @@ import { Form, FormField, SubmitButton } from "../../components/forms";
 import AppFieldArray from "../../components/forms/AppFieldArray";
 import { NewPostEntity } from "../../constants/models/AddContent";
 import { colors, sizes } from "../../constants/theme";
-// import useImagePicker from "../../hooks/useImagePicker";
 import FormImagePicker from "../../components/forms/FormImagePicker";
+import AppIcons from "../../components/AppIcons";
 
 function NewPost() {
-  // const { image, pickImage } = useImagePicker();
-  // console.log(image);
   
   const initialValues = { 
     title: "aaaa", 
@@ -47,9 +45,14 @@ function NewPost() {
     }
   }
 
-  // const onImagePickerPress = () => {
-  //   const image = pickImage();
-  // }
+  const AddImageButton = () =>(
+    <View style={styles.addImageButton}>
+      <AppIcons Icon="FontAwesome" name='plus' color={colors.gray4} size={16}/>
+      <AppText style={styles.addImageText}>
+        Image
+      </AppText>
+    </View>
+  )
 
   const FormSectionList = ({arrayHelpers, index, sectionContent}: FormSectionListEntity) => (
     <View>
@@ -58,7 +61,7 @@ function NewPost() {
             <FormField
               name={`sections.${index}.title`} 
               value={sectionContent.title}
-              placeholder="Add Title for Section"
+              placeholder="Title for Section"
               containerStyling={styles.sectionTitleInputContainer}
               style={styles.sectionTitle}
             />
@@ -71,17 +74,17 @@ function NewPost() {
             />
           </View>
         </View>
+        <FormImagePicker
+          name={`sections.${index}.image`}
+          imageStyle={styles.sectionImage}
+          AddImageButton={AddImageButton}
+        />
         <FormField
           name={`sections.${index}.content`} 
           value={sectionContent.content}
           placeholder="Describe your experience, mention some tips or notes for other travelers visiting this place "
           multiline={true}
           lines={3}
-          />
-          <FormImagePicker
-            name={`sections.${index}.image`}
-            isMultiSelect={true}
-            imageStyle={styles.sectionImage}
           />
       </View>
   )
@@ -206,8 +209,18 @@ const styles = StyleSheet.create({
     height: 100
   },
   sectionImage: {
-    width: 100,
-    height: 100
+    width: '100%',
+    height: 200
+  },
+  addImageButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+  },
+  addImageText: {
+    fontSize: sizes.fontL,
+    marginLeft: 10,
+    color: colors.gray4
   }
 });
 

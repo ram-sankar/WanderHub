@@ -3,12 +3,14 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 
 import ErrorMessage from './ErrorMessage';
-import AppImagePicker from './AppImagePicker';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
+import useImagePicker from '../../hooks/useImagePicker';
+import { TouchableWithoutFeedback } from 'react-native';
 
-export default function FormImagePicker({ name, isMultiSelect = false, imageStyle }: Props) {
+export default function FormImagePicker({ name, isMultiSelect = false, imageStyle, AddImageButton }: Props) {
+    const { pickImage } = useImagePicker();
     const { errors, setFieldValue, touched, values } = useFormikContext<any>();
-    let imageUris;
+    let imageUris: string;
     const splitName = name.split('.');
     if (splitName.length === 1) {
         imageUris = values[name];
@@ -16,27 +18,28 @@ export default function FormImagePicker({ name, isMultiSelect = false, imageStyl
         imageUris = values[splitName[0]][splitName[1]][splitName[2]];
     }
 
-    console.log(imageUris);
-    
-    
-    const handleImageAdd = (imageUri: any) => {
-        setFieldValue(name, imageUri);
+    const handleImageAdd = async () => {
+        const result = await pickImage();
+        setFieldValue(name, result?.uri);
     };
 
-    const handleImageRemove = (imageUri: any) => {
-        setFieldValue(
-            name,
-            null
-        );
-    };
+    // const handleImageRemove = (imageUri: any) => {
+    //     setFieldValue(name,null);
+    // };
+
+    const SingleImage = () => (
+        <View>
+            {!imageUris && (<TouchableWithoutFeedback onPress={handleImageAdd}>
+              <View>
+                  <AddImageButton />
+              </View>
+            </TouchableWithoutFeedback>)}
+            {!!imageUris && <Image source={{uri: imageUris}} style={imageStyle}/>}
+        </View>
+    )
     return (
         <>
-            <AppImagePicker 
-                imageUris={imageUris} 
-                onImageRemove={handleImageRemove}
-                onImageAdd={handleImageAdd}
-              />
-              {!!imageUris && <Image source={{uri: imageUris}} style={imageStyle}/>}
+            {!isMultiSelect && <SingleImage />}
             <ErrorMessage error={errors[name]} visible={touched[name]} />
         </>
     );
@@ -45,5 +48,6 @@ export default function FormImagePicker({ name, isMultiSelect = false, imageStyl
 interface Props {
     name: string,
     isMultiSelect?: boolean,
-    imageStyle?: any
+    imageStyle?: any,
+    AddImageButton: () => JSX.Element
 }
