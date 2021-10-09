@@ -2,10 +2,10 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getFocusedRouteNameFromRoute  } from '@react-navigation/native';
 
-import routes from './routes';
-import Explore from "../screens/Explore";
-import PlanDetails from '../screens/Explore/PlanDetails'
-import styles from "../constants/styles";
+import routes from '../routes';
+import Explore from "../../screens/Explore";
+import PlanDetails from '../../screens/Explore/PlanDetails'
+import styles from "../../constants/styles";
 
 const ExploreStack = createNativeStackNavigator();
 

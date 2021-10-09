@@ -2,13 +2,13 @@ import React from "react"
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 import routes from "./routes";
+import ExploreNavigator from "./screenNavigators/ExploreNavigator";
+import AddContentNavigator from "./screenNavigators/AddContentNavigator";
+import ProfileNavigator from "./screenNavigators/ProfileNavigator";
 import Home from '../screens/Home';
 import Favorite from "../screens/Favorite";
-import ExploreNavigator from "./ExploreNavigator";
-import AddContentNavigator from "./AddContentNavigator";
 import styles from "../constants/styles";
 import AppIcons from "../components/AppIcons";
-import ProfileNavigator from "./ProfileNavigator";
 
 const Tab = createBottomTabNavigator();
 

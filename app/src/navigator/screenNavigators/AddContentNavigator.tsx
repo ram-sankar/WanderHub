@@ -2,11 +2,11 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getFocusedRouteNameFromRoute  } from '@react-navigation/native';
 
-import routes from './routes';
-import AddContent from "../screens/AddContent";
-import styles from "../constants/styles";
-import NewCity from '../screens/AddContent/NewCity';
-import NewPost from '../screens/AddContent/NewPost';
+import routes from '../routes';
+import AddContent from "../../screens/AddContent";
+import styles from "../../constants/styles";
+import NewCity from '../../screens/AddContent/NewCity';
+import NewPost from '../../screens/AddContent/NewPost';
 
 const AddContentStack = createNativeStackNavigator();
 

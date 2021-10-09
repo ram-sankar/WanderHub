@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import AppLoading from "expo-app-loading";
 
 import NavigationTheme from "./src/navigator/NavigationTheme";
-import AuthNavigator from "./src/navigator/AuthNavigator";
+import AuthNavigator from "./src/navigator/screenNavigators/AuthNavigator";
 import AppNavigator from "./src/navigator/AppNavigator";
 import AuthContext from "./src/auth/context";
 import authStorage from "./src/auth/storage";
