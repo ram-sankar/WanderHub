@@ -19,6 +19,7 @@ function NewPost() {
   const initialValues = { 
     title: "aaaa", 
     place: "aaaa", 
+    image: '',
     sections: [
       {title: '', content: '', image: ''}
     ] 
@@ -26,7 +27,7 @@ function NewPost() {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(4).label("Title"),
     place: Yup.string().required().label("Place"),
-    image: Yup.string().label("Image"),
+    image: Yup.string().required().label("Image"),
   });
 
   const handleSubmit = async (data: NewPostEntity) => {
@@ -34,7 +35,7 @@ function NewPost() {
   }
 
   const menuActions = [
-    {id: 1, text: 'Add Section Below'}, 
+    {id: 1, text: 'Add Section'}, 
     {id: 2, text:'Delete'} 
   ]
   const onPopupEvent = (id: number, arrayHelpers: any, index: number) => {
@@ -101,7 +102,11 @@ function NewPost() {
         </AppText>
       )}
     </View>
-    )
+  )
+
+  const AddImageIcon = () => (
+    <AppIcons Icon="MaterialIcons" name='add-a-photo' color={colors.gray4} size={24}/>
+  )
 
   const InputForm = () => (
     <Form 
@@ -110,6 +115,11 @@ function NewPost() {
         validationSchema={validationSchema}
       >
         <View>
+          <FormImagePicker
+            name={'image'}
+            imageStyle={styles.sectionImage}
+            AddImageButton={AddImageIcon}
+          />
           <AppText style={styles.inputTitle}>Title</AppText>
           <FormField
             autoCorrect={false}
@@ -137,9 +147,9 @@ function NewPost() {
     <AppScreen>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <BackButton style={styles.backButton} />
-        <View style={styles.headerContainer}>
+        {/* <View style={styles.headerContainer}>
           <AppText style={styles.headingText}>Tell us about your last trip</AppText>
-        </View>
+        </View> */}
         <View style={styles.inputContainer}>
           <InputForm />
         </View>
@@ -167,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontXXL,
   },
   inputContainer: {
-    marginTop: 30,
+    marginTop: 50,
     marginBottom: 90,
     alignItems: 'center'
   },
@@ -210,7 +220,7 @@ const styles = StyleSheet.create({
   },
   sectionImage: {
     width: '100%',
-    height: 200
+    height: 200,
   },
   addImageButton: {
     flexDirection: 'row',

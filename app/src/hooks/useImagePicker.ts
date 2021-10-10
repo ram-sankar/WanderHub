@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
+import apiClient from './../api/client';
+import { ImageInfo } from "expo-image-picker/build/ImagePicker.types";
 
 export default function useImagePicker() {
   const requestPermission = async() => {
@@ -14,6 +16,7 @@ export default function useImagePicker() {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
+        base64: true,
         aspect: [4, 3],
         quality: 1,
       });
@@ -28,9 +31,18 @@ export default function useImagePicker() {
     }
   };
 
+  const uploadToCloudinary = async (result:({ cancelled: false; } & ImageInfo), folderName: string) => {
+    const formData = new FormData();
+    formData.append("file", `data:image/jpg;base64,${result?.base64}`);
+    formData.append("folder ", folderName);
+    formData.append("upload_preset", "ihb77cgu");
+    const response = await apiClient.post("https://api.cloudinary.com/v1_1/ramsankar/image/upload", formData);
+    return response.data;
+  }
+
   useEffect(() => {
     requestPermission();
   }, [])
 
-  return { pickImage }
+  return { pickImage, uploadToCloudinary }
 }

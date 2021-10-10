@@ -8,7 +8,7 @@ import useImagePicker from '../../hooks/useImagePicker';
 import { TouchableWithoutFeedback } from 'react-native';
 
 export default function FormImagePicker({ name, isMultiSelect = false, imageStyle, AddImageButton }: Props) {
-    const { pickImage } = useImagePicker();
+    const { pickImage, uploadToCloudinary } = useImagePicker();
     const { errors, setFieldValue, touched, values } = useFormikContext<any>();
     let imageUris: string;
     const splitName = name.split('.');
@@ -20,6 +20,11 @@ export default function FormImagePicker({ name, isMultiSelect = false, imageStyl
 
     const handleImageAdd = async () => {
         const result = await pickImage();
+        if (result?.uri) {
+            const response = await uploadToCloudinary(result, 'backpack');
+           console.log(response);
+        }
+        
         setFieldValue(name, result?.uri);
     };
 
