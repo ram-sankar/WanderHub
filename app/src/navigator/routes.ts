@@ -16,4 +16,5 @@ export default Object.freeze({
   ADD_CONTENT_SCREEN: "AddContentScreen",
   NEW_POST: "NewPost",
   NEW_CITY: "NewCity",
+  SETTINGS: "Settings",
 } as { [key: string]: string; })

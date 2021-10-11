@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import { View, StyleSheet, Pressable } from "react-native";
+import { NavigationContext } from '@react-navigation/native';
 
 import AppIcons from "../../components/AppIcons";
+import routes from "../../navigator/routes";
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { colors, sizes } from "../../constants/theme";
@@ -11,6 +13,7 @@ import Cities from "./Cities";
 
 const iconSize = 80, iconPadding = 20;
 function Profile() {
+  const navigation = React.useContext(NavigationContext);
   const tabHeaders = ['Posts', 'Cities'];
   const tabComponents = [<Posts data={profileDetails.posts} />, <Cities data={profileDetails.cities} />];
 
@@ -46,6 +49,9 @@ function Profile() {
   return (
     <AppScreen style={styles.container}>
       <View style={styles.topSection}>
+      <Pressable onPress={() => navigation?.navigate(routes.SETTINGS)} style={styles.settings}>
+        <AppIcons Icon="Ionicons" name="ios-settings" size={24}/>
+      </Pressable>
         <AppIcons Icon="MaterialCommunityIcons" name="account" size={iconSize} style={styles.profileIcon} color={colors.white}/>
         <AppText style={styles.username}>{profileDetails.name}</AppText>
         <Stats />
@@ -65,6 +71,9 @@ const styles = StyleSheet.create({
   topSection: {
     alignItems: 'center',
     margin: 10
+  },
+  settings: {
+
   },
   profileIcon: {
     backgroundColor: colors.primary,

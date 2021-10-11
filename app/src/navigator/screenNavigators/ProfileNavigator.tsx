@@ -4,6 +4,7 @@ import { getFocusedRouteNameFromRoute  } from '@react-navigation/native';
 
 import routes from '../routes';
 import Profile from "../../screens/Profile";
+import Settings from "../../screens/Profile/Settings";
 import styles from "../../constants/styles";
 
 const ProfileStack = createNativeStackNavigator();
@@ -23,6 +24,7 @@ export default function ProfileNavigator({ navigation, route }: Props) {
   return (
     <ProfileStack.Navigator screenOptions={{headerShown: false}} initialRouteName={routes.PROFILE_SCREEN}>
       <ProfileStack.Screen name={routes.PROFILE_SCREEN} component={Profile} />
+      <ProfileStack.Screen name={routes.SETTINGS} component={Settings} />
     </ProfileStack.Navigator>
   );
 }
