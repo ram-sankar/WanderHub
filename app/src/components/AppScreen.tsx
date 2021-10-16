@@ -2,7 +2,7 @@ import React from "react";
 import Constants from "expo-constants";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 
-import { colors } from "../constants/theme";
+import { colors, sizes } from "../constants/theme";
 
 function AppScreen({ children, style }: Props) {
   return (
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     height: '100%',
-    width: '100%'
+    width: '100%',
+    padding: sizes.padding,
   },
 });
 

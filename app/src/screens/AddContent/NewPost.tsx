@@ -146,10 +146,7 @@ function NewPost() {
   return (
     <AppScreen>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        <BackButton style={styles.backButton} />
-        {/* <View style={styles.headerContainer}>
-          <AppText style={styles.headingText}>Tell us about your last trip</AppText>
-        </View> */}
+        <BackButton />
         <View style={styles.inputContainer}>
           <InputForm />
         </View>
@@ -160,12 +157,7 @@ function NewPost() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-  },
-  backButton: {
-    position: 'absolute',
-    top: 0,
-    left: 15,
+    padding: sizes.padding,
   },
   headerContainer: {
     alignItems: 'center',
@@ -177,7 +169,6 @@ const styles = StyleSheet.create({
     fontSize: sizes.fontXXL,
   },
   inputContainer: {
-    marginTop: 50,
     marginBottom: 90,
     alignItems: 'center'
   },

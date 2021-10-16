@@ -52,13 +52,14 @@ function PlanDetails({ route }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 0
+    paddingTop: 0,
+    paddingHorizontal: 0
   },
   backButton: {
     marginTop: Constants.statusBarHeight,
     position: 'absolute',
     top: 0,
-    left: 30
+    left: 10
   },
   tabContainer: {
     flexDirection: 'row',

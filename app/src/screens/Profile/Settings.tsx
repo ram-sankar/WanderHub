@@ -6,19 +6,21 @@ import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { FixMeLater } from "../../constants/models/AddContent";
 import { sizes } from "../../constants/theme";
+import useAuth from './../../auth/useAuth';
 
 function Settings() {
+  const { logOut } = useAuth();
 
   const settingsList = [
     {name: 'Dark mode'},
     {name: 'Notification'},
     {name: 'About'},
     {name: 'Feedback'},
-    {name: 'Logout'},
+    {name: 'Logouts', onPress: logOut},
   ]
 
   const ListItems = ({item}: {item: FixMeLater}) => (
-    <AppText style={styles.listItems} onPress={()=>console.log(item)}>
+    <AppText style={styles.listItems} onPress={() => item?.onPress()}>
       {item.name}
     </AppText>
   );
@@ -45,7 +47,7 @@ function Settings() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    padding: sizes.padding,
   },
   backButton: {
     marginBottom: 0
