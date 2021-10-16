@@ -3,9 +3,9 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 import routes from "./routes";
 import ExploreNavigator from "./screenNavigators/ExploreNavigator";
+import UserPostNavigator from "./screenNavigators/UserPostNavigator";
 import AddContentNavigator from "./screenNavigators/AddContentNavigator";
 import ProfileNavigator from "./screenNavigators/ProfileNavigator";
-import Home from '../screens/Home';
 import Favorite from "../screens/Favorite";
 import styles from "../constants/styles";
 import AppIcons from "../components/AppIcons";
@@ -22,16 +22,16 @@ export default function AppNavigator() {
       }} 
     >
     <Tab.Screen 
-      name={routes.HOME}
-      component={Home}
+      name={routes.EXPLORE_TAB}
+      component={ExploreNavigator}
       options={{
         tabBarIcon: ({color, size}) => 
           <AppIcons Icon="Ionicons" name="ios-home" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 
-      name={routes.EXPLORE_TAB}
-      component={ExploreNavigator}
+      name={routes.USER_POST_TAB}
+      component={UserPostNavigator}
       options={{
         tabBarIcon: ({color, size}) => 
           <AppIcons Icon="Ionicons" name="compass" size={size} color={color}/>

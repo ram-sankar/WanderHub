@@ -17,4 +17,6 @@ export default Object.freeze({
   NEW_POST: "NewPost",
   NEW_CITY: "NewCity",
   SETTINGS: "Settings",
+  USER_POST_SCREEN: "UserPostScreen",
+  USER_POST_TAB: "UserPostTab"
 } as { [key: string]: string; })
