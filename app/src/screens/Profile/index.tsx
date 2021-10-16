@@ -70,10 +70,12 @@ const styles = StyleSheet.create({
   },
   topSection: {
     alignItems: 'center',
-    margin: 10
+    margin: 10,
+    width: '100%'
   },
   settings: {
-
+    position: 'absolute',
+    right: sizes.padding
   },
   profileIcon: {
     backgroundColor: colors.primary,
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     marginTop: 15,
+    justifyContent: 'center'
   },
   statsContent: {
     alignItems: 'center',

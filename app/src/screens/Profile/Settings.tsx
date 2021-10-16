@@ -1,28 +1,50 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Switch } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { FixMeLater } from "../../constants/models/AddContent";
-import { sizes } from "../../constants/theme";
+import { colors, sizes } from "../../constants/theme";
 import useAuth from './../../auth/useAuth';
 
 function Settings() {
   const { logOut } = useAuth();
 
   const settingsList = [
-    {name: 'Dark mode'},
-    {name: 'Notification'},
+    {
+      name: 'Dark mode',
+      isTogglePresent: true,
+      defaultValue: true
+    },
+    {
+      name: 'Notification',
+      isTogglePresent: true,
+      defaultValue: true
+    },
     {name: 'About'},
     {name: 'Feedback'},
-    {name: 'Logouts', onPress: logOut},
+    {
+      name: 'Logout', 
+      onPress: logOut, 
+    },
   ]
 
   const ListItems = ({item}: {item: FixMeLater}) => (
-    <AppText style={styles.listItems} onPress={() => item?.onPress()}>
-      {item.name}
-    </AppText>
+    <View style={styles.listContent}>
+      <AppText style={styles.listItems} onPress={() => item?.onPress()}>
+        {item.name}
+      </AppText>
+      {item.isTogglePresent && 
+        <Switch 
+          value={item.defaultValue} 
+          thumbColor={colors.white}
+          trackColor={{
+            true: colors.primary
+          }}
+          // onValueChange={item.handleChange}
+        />}
+    </View>
   );
 
   const RenderList = () => (
@@ -62,7 +84,11 @@ const styles = StyleSheet.create({
   },
   listItems: {
     fontSize: sizes.fontL,
-    paddingVertical: 10
-  }
+    paddingVertical: 10,
+    flex: 1,
+  },
+  listContent: {
+    flexDirection: 'row',
+  },
 });
 export default Settings;
