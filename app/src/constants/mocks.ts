@@ -17,10 +17,17 @@ const profileDetails = {
 }
 
 const exploreHome = [
-  {id: 1, title: 'Kudremuka', cost: 450200, day: 3, night: 2, image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-  {id: 2, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-  {id: 3, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
-  {id: 4, title: 'Kudremuka', cost: 4500, day: 3, night: 2, image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+  {id: 4, title: 'Divine trip to Rishikesh and Haridwar', cost: 5000, day: 3, night: 2, image: require("../assets/images/rishikesh.jpg"), views: 150, likes: 19, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+  {id: 1, title: 'Kudremuka', cost: 3500, day: 3, night: 2, image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+  {id: 2, title: 'Himalayan Trail', cost: 8000, day: 3, night: 2, image: require("../assets/images/himalayas.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+  {id: 3, title: 'Delhi Trip', cost: 1500, day: 2, night: 1, image: require("../assets/images/akshardham.jpg"), views: 70, likes: 12, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
+]
+
+const userPostHome = [
+  {id: 1, title: 'Himalayan Trail', image: require("../assets/images/himalayas.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/avatar.jpg"), ownerName: 'Ram Sankar'},
+  {id: 2, title: 'Delhi Trip', image: require("../assets/images/akshardham.jpg"), views: 70, likes: 12, ownerImage: require("../assets/images/avatar.jpg"), ownerName: 'Ram Sankar'},
+  {id: 3, title: 'Divine trip to Rishikesh and Haridwar with Rafting and Yoga', image: require("../assets/images/rishikesh.jpg"), views: 150, likes: 19, ownerImage: require("../assets/images/avatar.jpg"), ownerName: 'Ram Sankar'},
+  {id: 4, title: 'Kudremuka', image: require("../assets/images/kodachadri.jpg"), views: 340, likes: 27, ownerImage: require("../assets/images/travelMonkey.jpg"), ownerName: 'Travel Monkey'},
 ]
 
 const planDetails = {
@@ -54,5 +61,6 @@ const planDetails = {
 export {
   profileDetails,
   exploreHome,
-  planDetails
+  planDetails,
+  userPostHome
 }
