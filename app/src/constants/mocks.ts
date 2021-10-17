@@ -58,9 +58,22 @@ const planDetails = {
     ]
 }
 
+const postDetails = {
+  id: 1,
+  title: 'Himalayan Trail',
+  image: require("../assets/images/himalayas.jpg"), 
+  views: 340, 
+  likes: 27, 
+  ownerImage: require("../assets/images/avatar.jpg"), 
+  ownerName: 'Ram Sankar',
+  overview: `Kudremukha is a mountain range and name of a peak located in Chikkamagaluru district, in Karnataka, India. It is also the name of a small hill station cum mining town situated near the mountain, about 20 kilometres from Kalasa.`,
+  postDate: '21/2/2020',
+}
+
 export {
   profileDetails,
   exploreHome,
   planDetails,
-  userPostHome
+  userPostHome,
+  postDetails
 }

@@ -5,6 +5,7 @@ import { getFocusedRouteNameFromRoute  } from '@react-navigation/native';
 import routes from '../routes';
 import UserPost from "../../screens/UserPost";
 import styles from "../../constants/styles";
+import PostDetails from '../../screens/UserPost/PostDetails';
 
 const UserPostStack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function AuthNavigator({ navigation, route }: Props) {
   return (
     <UserPostStack.Navigator screenOptions={{headerShown: false}} initialRouteName={routes.USER_POST_SCREEN}>
       <UserPostStack.Screen name={routes.USER_POST_SCREEN} component={UserPost} />
+      <UserPostStack.Screen name={routes.POST_DETAILS} component={PostDetails} />
     </UserPostStack.Navigator>
   );
 }

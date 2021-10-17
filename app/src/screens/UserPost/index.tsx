@@ -35,13 +35,13 @@ function UserPost() {
   const SearchBox = () => (
     <View style={styles.searchBoxContainer}>
       <Pressable onPress={() => setIsModalVisible(true)} style={styles.searchBox}>
-        <AppText style={styles.searchBoxText}>UserPost plans for city</AppText>
+        <AppText style={styles.searchBoxText}>Search post for city</AppText>
       </Pressable>
     </View>
   )
 
   const RenderList = ({item}: {item: UserPostEntity}) => (
-      <Pressable onPress={() => navigation?.navigate(routes.PLAN_DETAILS, {id: item.id})} style={styles.listItem}>
+      <Pressable onPress={() => navigation?.navigate(routes.POST_DETAILS, {id: item.id})} style={styles.listItem}>
         <Image source={item.image} style={styles.listImage} />
         <View style={styles.listBody}>
           <AppText style={styles.listTitle}>{item.title}</AppText>

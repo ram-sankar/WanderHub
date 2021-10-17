@@ -18,5 +18,6 @@ export default Object.freeze({
   NEW_CITY: "NewCity",
   SETTINGS: "Settings",
   USER_POST_SCREEN: "UserPostScreen",
-  USER_POST_TAB: "UserPostTab"
+  USER_POST_TAB: "UserPostTab",
+  POST_DETAILS: "PostDetails",
 } as { [key: string]: string; })
