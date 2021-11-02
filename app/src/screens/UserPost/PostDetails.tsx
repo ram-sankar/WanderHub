@@ -1,16 +1,18 @@
-import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Image, Pressable, ScrollView } from "react-native";
 import Constants from "expo-constants";
 
 import AppScreen from "../../components/AppScreen";
 import BackButton from "../../components/BackButton";
 import { postDetails } from "../../constants/mocks";
 import AppText from "../../components/AppText";
-import { sizes } from "../../constants/theme";
+import { colors, sizes } from "../../constants/theme";
+import AppIcons from "../../components/AppIcons";
 
 function PostDetails({ route }: any) {
-  const { id } = route.params;
-  console.log(id);
+  // const { id } = route.params;
+  const [isLiked, setIsLiked] = useState(false);
+  const iconSize = 22, iconColor = colors.black;
 
   const OwnerSection = () => (
     <View style={styles.ownerSection}>
@@ -22,15 +24,40 @@ function PostDetails({ route }: any) {
     </View>
   )
 
+  const onLikePress = () => {
+    setIsLiked(!isLiked);
+  }
+
+  const BottomSection = () => (
+    <View style={styles.bottomContainer}>
+      <Pressable onPress={onLikePress} style={styles.iconContainer}>
+        {!isLiked && <AppIcons Icon="AntDesign" name="like2" size={iconSize} style={styles.bottomIcon} color={iconColor}/>}
+        {isLiked && <AppIcons Icon="AntDesign" name="like1" size={iconSize} style={styles.bottomIcon} color={colors.primary}/>}
+        <AppText>{postDetails.likes}</AppText>
+      </Pressable>
+      <Pressable onPress={onLikePress} style={styles.iconContainer}>
+        <AppIcons Icon="FontAwesome5" name="eye" size={iconSize} style={styles.bottomIcon} color={iconColor}/>
+        <AppText>{postDetails.views}</AppText>
+      </Pressable>
+      <Pressable onPress={onLikePress} style={styles.iconContainer}>
+        <AppIcons Icon="FontAwesome" name="share" size={iconSize} style={styles.bottomIcon} color={iconColor}/>
+        <AppText>Share</AppText>
+      </Pressable>
+    </View>
+  )
+
   return (
     <AppScreen style={styles.container}>
-      <Image style={styles.topImage} source={postDetails.image} />
-      <BackButton style={styles.backButton}/>
-      <View style={styles.contentContainer}>
-        <AppText style={styles.title}>{postDetails.title}</AppText>
-        <OwnerSection />
-        <AppText style={styles.overview}>{postDetails.overview}</AppText>
-      </View>
+        <Image style={styles.topImage} source={postDetails.image} />
+        <BackButton style={styles.backButton}/>
+      <ScrollView>
+        <View style={styles.contentContainer}>
+          <AppText style={styles.title}>{postDetails.title}</AppText>
+          <OwnerSection />
+          <AppText style={styles.overview}>{postDetails.overview}</AppText>
+        </View>
+      </ScrollView>
+      <BottomSection />
     </AppScreen>
   )
 }
@@ -51,7 +78,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   contentContainer: {
-    padding: sizes.padding
+    padding: sizes.padding,
+    marginBottom: 40
   },
   title: {
     fontSize: sizes.fontXXL,
@@ -77,6 +105,22 @@ const styles = StyleSheet.create({
   overview: {
     paddingTop: 10,
     textAlign: 'justify'
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 0,
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    width: '100%',
+    backgroundColor: colors.white,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10
+  },
+  bottomIcon: {
+    paddingRight: 15
   }
 });
 export default PostDetails;

@@ -12,7 +12,7 @@ const AddContentStack = createNativeStackNavigator();
 
 export default function AddContentNavigator({ navigation, route }: Props) {
   const routeName = getFocusedRouteNameFromRoute (route) || '';
-  const tabShouldNotVisible = [routes.PLAN_DETAILS]
+  const tabShouldNotVisible = [routes.NEW_POST, routes.NEW_CITY]
 
   React.useLayoutEffect(() => {
     if (tabShouldNotVisible.includes(routeName)){

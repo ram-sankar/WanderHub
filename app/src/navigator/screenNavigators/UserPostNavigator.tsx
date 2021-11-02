@@ -11,7 +11,7 @@ const UserPostStack = createNativeStackNavigator();
 
 export default function AuthNavigator({ navigation, route }: Props) {
   const routeName = getFocusedRouteNameFromRoute (route) || '';
-  const tabShouldNotVisible = [routes.PLAN_DETAILS]
+  const tabShouldNotVisible = [routes.POST_DETAILS]
 
   React.useLayoutEffect(() => {
     if (tabShouldNotVisible.includes(routeName)){

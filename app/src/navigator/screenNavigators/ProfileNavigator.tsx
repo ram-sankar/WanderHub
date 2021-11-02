@@ -11,7 +11,7 @@ const ProfileStack = createNativeStackNavigator();
 
 export default function ProfileNavigator({ navigation, route }: Props) {
   const routeName = getFocusedRouteNameFromRoute (route) || '';
-  const tabShouldNotVisible = [routes.PLAN_DETAILS]
+  const tabShouldNotVisible = [routes.SETTINGS]
 
   React.useLayoutEffect(() => {
     if (tabShouldNotVisible.includes(routeName)){
