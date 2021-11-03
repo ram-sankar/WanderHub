@@ -6,7 +6,7 @@ import ExploreNavigator from "./screenNavigators/ExploreNavigator";
 import UserPostNavigator from "./screenNavigators/UserPostNavigator";
 import AddContentNavigator from "./screenNavigators/AddContentNavigator";
 import ProfileNavigator from "./screenNavigators/ProfileNavigator";
-import Favorite from "../screens/Favorite";
+import Notifications from "../screens/Notifications";
 import styles from "../constants/styles";
 import AppIcons from "../components/AppIcons";
 
@@ -46,11 +46,11 @@ export default function AppNavigator() {
       }}  
     />
     <Tab.Screen 
-      name={routes.FAVORITE}
-      component={Favorite}
+      name={routes.NOTIFICATIONS_TAB}
+      component={Notifications}
       options={{
         tabBarIcon: ({color, size}) => 
-          <AppIcons Icon="Ionicons" name="heart" size={size} color={color}/>
+          <AppIcons Icon="Ionicons" name="notifications" size={size} color={color}/>
       }}  
     />
     <Tab.Screen 

@@ -8,7 +8,7 @@ export default Object.freeze({
   SEARCH: "Search",
   PROFILE_SCREEN: "ProfileScreen",
   PROFILE_TAB: "ProfileTab",
-  FAVORITE: "Favorite",
+  NOTIFICATIONS_TAB: "NotificationsTab",
   EXPLORE_TAB: "ExploreTab",
   EXPLORE_SCREEN: "ExploreScreen",
   PLAN_DETAILS: "PlanDetails",
