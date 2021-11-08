@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, FlatList, Image, Pressable, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
@@ -6,15 +6,18 @@ import { NavigationContext } from '@react-navigation/native';
 import AppScreen from "../../components/AppScreen";
 import AppSearchScreen from "../../components/AppSearchScreen";
 import AppText from "../../components/AppText";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 import routes from "../../navigator/routes";
 import { exploreHome } from "../../constants/mocks";
 import { ExploreEntity } from "../../constants/models/Explore";
+import ThemeContext from "../../common/ThemeContext";
 
 const screenWidth = Dimensions.get('window').width;
 
 function Explore() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const navigation = React.useContext(NavigationContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -83,7 +86,7 @@ function Explore() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: any) => StyleSheet.create({
   container: {
     alignItems: 'center'
   },
@@ -97,17 +100,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 25,
-    borderColor: colors.darkGrey,
+    borderColor: theme.darkGrey,
     marginVertical: 10
   },
   searchBoxText: {
-    color: colors.gray4
+    color: theme.gray4
   },
   listItem: {
     width: '90%',
     marginLeft: '5%',
     borderRadius: 10,
-    backgroundColor: colors.white,
+    backgroundColor: theme.white,
     marginVertical: 5,
     overflow: 'hidden'
   },
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   ownerName: {
     flex: 1,
     fontWeight: '700',
-    color: colors.gray5
+    color: theme.gray5
   },
   listTopSection: {
     flexDirection: 'row',
@@ -151,17 +154,17 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   listTitle: {
-    color: colors.darkGrey,
+    color: theme.darkGrey,
     fontWeight: '700',
     fontSize: sizes.fontL
   },
   listDay: {
-    color: colors.gray3
+    color: theme.gray3
   },
   cost: {
     fontWeight: '700',
     marginRight: 10,
-    color: colors.primary,
+    color: theme.primary,
     fontSize: sizes.fontL
   }
 });
