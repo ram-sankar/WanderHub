@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, StyleSheet } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { City } from "../../constants/models/Profile";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 function Cities({data}: {data: City[]}) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
 
   const RenderCityList = () => (
     <>
@@ -28,7 +32,7 @@ function Cities({data}: {data: City[]}) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingTop: 0,
     width: '100%',
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: '90%',
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
     borderRadius: 5,
     elevation: 1,
     marginVertical: 10,

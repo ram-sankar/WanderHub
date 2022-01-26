@@ -11,7 +11,7 @@ import ThemeContext from "../../common/ThemeContext";
 function Itinerary({data}: {data: PlanDetailsEntity}) {
   const { theme } = useContext(ThemeContext);
   const styles = useStyles(theme);
-const [activeDay, setActiveDay] = useState(1);
+  const [activeDay, setActiveDay] = useState(1);
 
   const Bullet = ({places}: {places: PlacesEntity[]}) => (
     <>

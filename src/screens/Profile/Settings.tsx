@@ -1,14 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, StyleSheet, FlatList, Switch } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { FixMeLater } from "../../constants/models/AddContent";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import useAuth from './../../auth/useAuth';
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 function Settings() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const { logOut } = useAuth();
 
   const settingsList = [
@@ -38,9 +42,9 @@ function Settings() {
       {item.isTogglePresent && 
         <Switch 
           value={item.defaultValue} 
-          thumbColor={colors.white}
+          thumbColor={theme.bg}
           trackColor={{
-            true: colors.primary
+            true: theme.primary
           }}
           // onValueChange={item.handleChange}
         />}
@@ -67,7 +71,7 @@ function Settings() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     padding: sizes.padding,
   },

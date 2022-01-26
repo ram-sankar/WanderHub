@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { NavigationContext } from '@react-navigation/native';
 
@@ -6,13 +6,17 @@ import AppIcons from "../../components/AppIcons";
 import routes from "../../navigator/routes";
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import { profileDetails } from "../../constants/mocks";
 import Posts from "./Posts";
 import Cities from "./Cities";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 const iconSize = 80, iconPadding = 20;
 function Profile() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const navigation = React.useContext(NavigationContext);
   const tabHeaders = ['Posts', 'Cities'];
   const tabComponents = [<Posts data={profileDetails.posts} />, <Cities data={profileDetails.cities} />];
@@ -52,7 +56,7 @@ function Profile() {
       <Pressable onPress={() => navigation?.navigate(routes.SETTINGS)} style={styles.settings}>
         <AppIcons Icon="Ionicons" name="ios-settings" size={24}/>
       </Pressable>
-        <AppIcons Icon="MaterialCommunityIcons" name="account" size={iconSize} style={styles.profileIcon} color={colors.white}/>
+        <AppIcons Icon="MaterialCommunityIcons" name="account" size={iconSize} style={styles.profileIcon} color={theme.bg}/>
         <AppText style={styles.username}>{profileDetails.name}</AppText>
         <Stats />
       </View>
@@ -64,7 +68,7 @@ function Profile() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     alignItems: 'center'
   },
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     right: sizes.padding
   },
   profileIcon: {
-    backgroundColor: colors.primary,
+    backgroundColor: theme.primary,
     height: iconSize + iconPadding,
     width: iconSize + iconPadding,
     borderRadius: (iconSize + iconPadding)/2,
@@ -113,13 +117,13 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderBottomColor: colors.gray2,
+    borderBottomColor: theme.gray2,
     borderBottomWidth: 1,
   },
   tabHeaderText: {
     fontWeight: '700',
     fontSize: sizes.fontL,
-    color: colors.gray5,
+    color: theme.gray5,
   },
   tabHeaderContainer: {
     flex: 1,
@@ -127,11 +131,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   activeTab: {
-    borderBottomColor: colors.primary,
+    borderBottomColor: theme.primary,
     borderBottomWidth: 2
   },
   activeText: {
-    color: colors.primary,
+    color: theme.primary,
   }
 });
 export default Profile;

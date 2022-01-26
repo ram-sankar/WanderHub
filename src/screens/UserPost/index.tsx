@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, FlatList, Image, Pressable, Dimensions  } from "react-native";
 import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
@@ -6,14 +6,18 @@ import { NavigationContext } from '@react-navigation/native';
 import AppScreen from "../../components/AppScreen";
 import AppSearchScreen from "../../components/AppSearchScreen";
 import AppText from "../../components/AppText";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import routes from "../../navigator/routes";
 import { userPostHome } from "../../constants/mocks";
 import { UserPostEntity } from "../../constants/models/UserPost";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 const screenWidth = Dimensions.get('window').width;
 
 function UserPost() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const navigation = React.useContext(NavigationContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -76,7 +80,7 @@ function UserPost() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     alignItems: 'center'
   },
@@ -90,17 +94,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 25,
-    borderColor: colors.darkGrey,
+    borderColor: theme.darkGrey,
     marginVertical: 10
   },
   searchBoxText: {
-    color: colors.gray4
+    color: theme.gray4
   },
   listItem: {
     width: '90%',
     marginLeft: '5%',
     borderRadius: 10,
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
     marginVertical: 5,
     overflow: 'hidden'
   },
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
   ownerName: {
     flex: 1,
     fontWeight: '700',
-    color: colors.gray5
+    color: theme.gray5
   },
   likesContainer: {
     alignItems: 'center',
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   listTitle: {
-    color: colors.darkGrey,
+    color: theme.darkGrey,
     fontWeight: '700',
     fontSize: sizes.fontL
   }

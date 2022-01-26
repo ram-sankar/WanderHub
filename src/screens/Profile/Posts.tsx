@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, StyleSheet, TouchableOpacity, Image, FlatList, Dimensions } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import AppPopupMenu from "../../components/AppPopupMenu";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import { Post } from "../../constants/models/Profile";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 const screenWidth = Dimensions.get('window').width;
 
 function Posts({data}: {data: Post[]}) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   
   const menuActions = [
     {id: 1, text: 'Edit'},
@@ -50,7 +54,7 @@ function Posts({data}: {data: Post[]}) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingTop: 0,
     width: '100%',
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: screenWidth * 0.9,
     flexDirection: 'row',
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
     borderRadius: 5,
     marginVertical: 10
   },

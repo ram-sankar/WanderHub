@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, Image, Pressable, ScrollView } from "react-native";
 import Constants from "expo-constants";
 
@@ -6,13 +6,17 @@ import AppScreen from "../../components/AppScreen";
 import BackButton from "../../components/BackButton";
 import { postDetails } from "../../constants/mocks";
 import AppText from "../../components/AppText";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import AppIcons from "../../components/AppIcons";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 function PostDetails({ route }: any) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   // const { id } = route.params;
   const [isLiked, setIsLiked] = useState(false);
-  const iconSize = 22, iconColor = colors.black;
+  const iconSize = 22, iconColor = theme.text;
 
   const OwnerSection = () => (
     <View style={styles.ownerSection}>
@@ -32,7 +36,7 @@ function PostDetails({ route }: any) {
     <View style={styles.bottomContainer}>
       <Pressable onPress={onLikePress} style={styles.iconContainer}>
         {!isLiked && <AppIcons Icon="AntDesign" name="like2" size={iconSize} style={styles.bottomIcon} color={iconColor}/>}
-        {isLiked && <AppIcons Icon="AntDesign" name="like1" size={iconSize} style={styles.bottomIcon} color={colors.primary}/>}
+        {isLiked && <AppIcons Icon="AntDesign" name="like1" size={iconSize} style={styles.bottomIcon} color={theme.primary}/>}
         <AppText>{postDetails.likes}</AppText>
       </Pressable>
       <Pressable onPress={onLikePress} style={styles.iconContainer}>
@@ -62,7 +66,7 @@ function PostDetails({ route }: any) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingTop: 0,
     paddingHorizontal: 0
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
   },
   iconContainer: {
     flexDirection: 'row',
