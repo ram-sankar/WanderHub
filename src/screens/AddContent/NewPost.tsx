@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { FieldArrayRenderProps } from "formik";
 import * as Yup from "yup";
@@ -10,11 +10,15 @@ import BackButton from "../../components/BackButton";
 import { Form, FormField, SubmitButton } from "../../components/forms";
 import AppFieldArray from "../../components/forms/AppFieldArray";
 import { NewPostEntity } from "../../constants/models/AddContent";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import FormImagePicker from "../../components/forms/FormImagePicker";
 import AppIcons from "../../components/AppIcons";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 function NewPost() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   
   const initialValues = { 
     title: "aaaa", 
@@ -48,7 +52,7 @@ function NewPost() {
 
   const AddImageButton = () =>(
     <View style={styles.addImageButton}>
-      <AppIcons Icon="FontAwesome" name='plus' color={colors.gray4} size={16}/>
+      <AppIcons Icon="FontAwesome" name='plus' color={theme.gray4} size={16}/>
       <AppText style={styles.addImageText}>
         Image
       </AppText>
@@ -105,7 +109,7 @@ function NewPost() {
   )
 
   const AddImageIcon = () => (
-    <AppIcons Icon="MaterialIcons" name='add-a-photo' color={colors.gray4} size={24}/>
+    <AppIcons Icon="MaterialIcons" name='add-a-photo' color={theme.gray4} size={24}/>
   )
 
   const InputForm = () => (
@@ -155,7 +159,7 @@ function NewPost() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     padding: sizes.padding,
   },
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputTitle: {
-    color: colors.primary,
+    color: theme.primary,
     fontWeight: '700',
     fontSize: sizes.fontL,
     marginTop: 10
@@ -181,12 +185,12 @@ const styles = StyleSheet.create({
   submitButton: {
     fontSize: sizes.fontL,
     fontWeight: '700',
-    backgroundColor: colors.primary,
+    backgroundColor: theme.primary,
     padding: 10,
     width: 100,
     textAlign: 'center' ,
     borderRadius: 10,
-    color: colors.white,
+    color: theme.bg,
     marginTop: 10,
   },
   sectionTitleContainer: {
@@ -194,7 +198,7 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
   sectionTitleInputContainer: {
-    backgroundColor: colors.transparent,
+    backgroundColor: theme.transparent,
   },
   sectionTitle: {
     fontSize: sizes.fontXL,
@@ -221,7 +225,7 @@ const styles = StyleSheet.create({
   addImageText: {
     fontSize: sizes.fontL,
     marginLeft: 10,
-    color: colors.gray4
+    color: theme.gray4
   }
 });
 

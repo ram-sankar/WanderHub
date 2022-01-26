@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { ItineraryEntity, PlacesEntity, PlanDetailsEntity } from "../../constants/models/Explore";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 function Itinerary({data}: {data: PlanDetailsEntity}) {
-  const [activeDay, setActiveDay] = useState(1);
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
+const [activeDay, setActiveDay] = useState(1);
 
   const Bullet = ({places}: {places: PlacesEntity[]}) => (
     <>
@@ -43,13 +47,13 @@ function Itinerary({data}: {data: PlanDetailsEntity}) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingHorizontal: 10,
     paddingTop: 0
   },
   dayContainer: {
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
     elevation: 3,
     marginVertical: 10,
     paddingHorizontal: 10,

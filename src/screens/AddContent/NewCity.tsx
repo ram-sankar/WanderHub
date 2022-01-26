@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import { Form, FormField, SubmitButton } from "../../components/forms";
 import { NewCityEntity } from "../../constants/models/AddContent";
 import AppDatePicker from "../../components/forms/AppDatePicker";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 function NewCity() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
 
   const validationSchema = Yup.object().shape({
     city: Yup.string().required().label("City"),
@@ -59,7 +63,7 @@ function NewCity() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     padding: 40,
   },
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputTitle: {
-    color: colors.primary,
+    color: theme.primary,
     fontWeight: '700',
     fontSize: sizes.fontL,
     marginTop: 10
@@ -90,17 +94,17 @@ const styles = StyleSheet.create({
   submitButton: {
     fontSize: sizes.fontL,
     fontWeight: '700',
-    backgroundColor: colors.primary,
+    backgroundColor: theme.primary,
     padding: 10,
     width: 100,
     textAlign: 'center' ,
     borderRadius: 10,
-    color: colors.white,
+    color: theme.bg,
     marginTop: 10,
   },
   selectDateContainer: {
     flexDirection: 'row',
-    backgroundColor: colors.white,
+    backgroundColor: theme.bg,
     borderRadius: 5,
     marginVertical: 10,
     height: 50,
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   selectDateText: {
-    color: colors.gray2,
+    color: theme.gray2,
     flex: 1
   }
 });

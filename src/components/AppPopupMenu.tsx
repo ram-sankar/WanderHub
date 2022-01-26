@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Pressable, View } from "react-native";
 import { Menu, MenuItem } from 'react-native-material-menu';
 
-import { colors } from "../constants/theme";
 import AppIcons from "./AppIcons";
+import ThemeContext from "../common/ThemeContext";
 
 function AppPopupMenu({actions, onPress, isIconVertical=true}: Props) {
+  const { theme } = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
 
   const handleMenuPress = () => setVisible(true);
@@ -17,7 +18,7 @@ function AppPopupMenu({actions, onPress, isIconVertical=true}: Props) {
 
   const MenuIcon = () => (
     <Pressable onPress={handleMenuPress} style={{paddingHorizontal: 10}}>
-      <AppIcons Icon="MaterialIcons" name={isIconVertical ? "more-vert" : "more-horiz"} size={24} color={colors.black}/>
+      <AppIcons Icon="MaterialIcons" name={isIconVertical ? "more-vert" : "more-horiz"} size={24} color={theme.text}/>
     </Pressable>
   )
 

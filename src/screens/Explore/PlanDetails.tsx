@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, Image, Pressable } from "react-native";
 import Constants from "expo-constants";
-
-import AppScreen from "../../components/AppScreen";
+import 
+AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import Overview from "./Overview";
 import Itinerary from "./Itinerary";
 import Contact from "./Contact";
 import { planDetails } from "../../constants/mocks";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
 function PlanDetails({ route }: any) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const { id } = route.params;
   console.log(id);
   const userPreference = { isLiked: false, isBookMarked: false}
@@ -50,7 +54,7 @@ function PlanDetails({ route }: any) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingTop: 0,
     paddingHorizontal: 0
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderBottomColor: colors.gray2,
+    borderBottomColor: theme.gray2,
     borderBottomWidth: 1,
   },
   topImage: {
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
   tabHeaderText: {
     fontWeight: '700',
     fontSize: sizes.fontL,
-    color: colors.gray5,
+    color: theme.gray5,
   },
   tabHeaderContainer: {
     flex: 1,
@@ -82,11 +86,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   activeTab: {
-    borderBottomColor: colors.primary,
+    borderBottomColor: theme.primary,
     borderBottomWidth: 2
   },
   activeText: {
-    color: colors.primary,
+    color: theme.primary,
   }
 });
 export default PlanDetails;

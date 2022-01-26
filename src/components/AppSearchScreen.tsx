@@ -1,12 +1,14 @@
-import React, {useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect, useContext } from "react";
 import { View, Modal, StyleSheet, Pressable } from "react-native";
 
-import { colors } from "../constants/theme";
 import AppIcons from "./AppIcons";
 import TextInput from "./TextInput";
-
+import ThemeContext from "../common/ThemeContext";
+import { Themes } from "../constants/models/Common";
 
 function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, submitSearch, ...rest }: Props) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const [searchText, setSearchText] = useState('');
   const inputEl: any = useRef(null);
 
@@ -26,8 +28,8 @@ function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, s
             <AppIcons
               Icon="FontAwesome"
               name='angle-left'
-              backgroundColor={colors.transparent}
-              iconColor={colors.black}
+              backgroundColor={theme.transparent}
+              iconColor={theme.text}
               size={35}
             />
           </Pressable>
@@ -45,7 +47,7 @@ function AppSearchScreen({ isModalVisible, setIsModalVisible, placeholderText, s
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   centeredView: {
     flex: 1,
     height: '100%',
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   textInputContainerStyling: {
-    borderColor: colors.darkGrey,
+    borderColor: theme.darkGrey,
     borderWidth: 1,
     borderRadius: 25,
     marginRight: 10,

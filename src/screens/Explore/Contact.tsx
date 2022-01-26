@@ -1,14 +1,19 @@
-import React from "react";
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { View, StyleSheet, Image, TouchableOpacity, ColorValue } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import { PlanDetailsEntity } from "../../constants/models/Explore";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
-const iconColor = colors.gray5;
+let iconColor: ColorValue;
 
 function Contact({data}: {data: PlanDetailsEntity}) {
+  const { theme } = useContext(ThemeContext);
+  iconColor = theme.gray5;
+  const styles = useStyles(theme);
   
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -38,7 +43,7 @@ function Contact({data}: {data: PlanDetailsEntity}) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingHorizontal: 10,
     paddingTop: 10
@@ -56,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderBottomWidth: 1,
-    borderBottomColor: colors.gray2,
+    borderBottomColor: theme.gray2,
     paddingBottom: 20
   },
   iconBox: {
@@ -75,12 +80,12 @@ const styles = StyleSheet.create({
   buttonTray: {
     flexDirection: 'row',
     marginTop: 10,
-    borderBottomColor: colors.gray2,
+    borderBottomColor: theme.gray2,
     borderBottomWidth: 1,
     paddingBottom: 20
   },
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: theme.primary,
     paddingVertical: 10,
     width: '100%',
     flex: 1,
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   buttonText: {
-    color: colors.white,
+    color: theme.bg,
     fontWeight: '700',
     fontSize: sizes.fontL
   }

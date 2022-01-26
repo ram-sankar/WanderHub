@@ -1,18 +1,23 @@
-import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import React, { useContext } from "react";
+import { View, StyleSheet, ScrollView, ColorValue } from "react-native";
 import { Ionicons, FontAwesome5, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import AppIcons from "../../components/AppIcons";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import { numberWithCommas } from "../../common/helperFunctions";
 import { InclusionEntity, PlanDetailsEntity } from "../../constants/models/Explore";
+import { Themes } from "../../constants/models/Common";
+import ThemeContext from "../../common/ThemeContext";
 
-const iconColor = colors.gray5;
+let iconColor: ColorValue;
 const iconSize = 22;
 
 function Overview({data}: {data: PlanDetailsEntity}) {
+  const { theme } = useContext(ThemeContext);
+  iconColor = theme.gray5;
+  const styles = useStyles(theme);
 
   const TopSection = () => (
     <View style={styles.topSection}>
@@ -73,7 +78,7 @@ function Overview({data}: {data: PlanDetailsEntity}) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     paddingTop: 0,
     paddingHorizontal: 10,
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderBottomWidth: 1,
-    borderBottomColor: colors.gray2,
+    borderBottomColor: theme.gray2,
     paddingBottom: 20
   },
   iconBox: {
@@ -108,13 +113,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   days: {
-    color: colors.gray3,
+    color: theme.gray3,
     fontSize: sizes.font
   },
   cost: {
     fontWeight: '700',
     marginRight: 10,
-    color: colors.red,
+    color: theme.red,
     fontSize: sizes.fontL
   },
   subHeading: {

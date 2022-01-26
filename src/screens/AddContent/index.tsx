@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { NavigationContext } from '@react-navigation/native';
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import routes from "../../navigator/routes";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 function AddContent() {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const navigation = React.useContext(NavigationContext);
 
   const onNewCityClick = () => {
@@ -38,7 +42,7 @@ function AddContent() {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -54,12 +58,12 @@ const styles = StyleSheet.create({
   button: {
     fontSize: sizes.fontL,
     fontWeight: '700',
-    backgroundColor: colors.primary,
+    backgroundColor: theme.primary,
     padding: 10,
     width: 100,
     textAlign: 'center' ,
     borderRadius: 10,
-    color: colors.white,
+    color: theme.bg,
     marginTop: 10
   },
   buttonText: {

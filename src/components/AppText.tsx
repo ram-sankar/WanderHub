@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Text, StyleSheet, Platform } from "react-native";
 
+import { sizes } from "../constants/theme";
 import ThemeContext from "../common/ThemeContext";
 import { Themes } from "../constants/models/Common";
-import { sizes } from "../constants/theme";
 
 function AppText({ children, style, ...otherProps }: Props): JSX.Element {
   const { theme } = useContext(ThemeContext);
