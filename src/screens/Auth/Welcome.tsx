@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import AppButton from "../../components/AppButton";
 import AppText from "../../components/AppText";
-import { colors } from "../../constants/theme";
 import AppScreen from "../../components/AppScreen";
 import routes from "../../navigator/routes";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 function Welcome({navigation}: any) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
+
   return (
     <AppScreen style={styles.container}>
       <View style={styles.headingContainer}>
@@ -22,19 +26,20 @@ function Welcome({navigation}: any) {
       />
       <AppButton
         title="LOG IN"
+        color='text'
         onPress={() => navigation.navigate(routes.LOGIN)}
       />
       <AppButton
         title="SIGN UP"
         onPress={() => navigation.navigate(routes.REGISTER)}
-        color="black"
-        backgroundColor="white"
+        color='text'
+        backgroundColor="bg"
       />
     </AppScreen>
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     alignItems: 'center',
   },
@@ -50,10 +55,10 @@ const styles = StyleSheet.create({
   textPrimary: {
     fontSize: 24,
     fontWeight: "bold",
-    color: colors.primary,
+    color: theme.primary,
   },
   secondaryText: {
-    color: colors.gray
+    color: theme.gray
   },
   image: {
     width: "100%",

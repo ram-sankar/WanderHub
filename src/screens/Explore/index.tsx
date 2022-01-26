@@ -12,6 +12,7 @@ import routes from "../../navigator/routes";
 import { exploreHome } from "../../constants/mocks";
 import { ExploreEntity } from "../../constants/models/Explore";
 import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -86,7 +87,7 @@ function Explore() {
   )
 }
 
-const useStyles = (theme: any) => StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     alignItems: 'center'
   },
@@ -110,7 +111,7 @@ const useStyles = (theme: any) => StyleSheet.create({
     width: '90%',
     marginLeft: '5%',
     borderRadius: 10,
-    backgroundColor: theme.white,
+    backgroundColor: theme.bg,
     marginVertical: 5,
     overflow: 'hidden'
   },

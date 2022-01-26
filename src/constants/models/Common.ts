@@ -1,10 +1,30 @@
+import { ColorValue } from "react-native";
+
 export interface KeyValuePairs {
   [key: string]: string;
-} 
+}
 
 export interface Themes {
-  [key: string]: string | KeyValuePairs;
-} 
+  primary: ColorValue,
+  lightPrimary: ColorValue,
+  darkPrimary: ColorValue,
+  purple: ColorValue,
+  tertiary: ColorValue,
+  text: ColorValue,
+  bg: ColorValue,
+  darkGrey: ColorValue,
+  gray: ColorValue,
+  gray2: ColorValue,
+  gray3: ColorValue,
+  gray4: ColorValue,
+  gray5: ColorValue,
+  blue: ColorValue,
+  appBackGround: ColorValue,
+  lightGreen: ColorValue,
+  lightGreen2: ColorValue,
+  red: ColorValue,
+  transparent: ColorValue
+}
 
 export interface Colors {
   light: Themes,

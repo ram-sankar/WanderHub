@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Constants from "expo-constants";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 
-import { colors, sizes } from "../constants/theme";
+import { sizes } from "../constants/theme";
+import ThemeContext from "../common/ThemeContext";
+import { Themes } from "../constants/models/Common";
 
 function AppScreen({ children, style }: Props) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
+
   return (
     <SafeAreaView style={[styles.screen, style]}>
       <View style={[styles.view, style]}>{children}</View>
@@ -12,10 +17,10 @@ function AppScreen({ children, style }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: colors.appBackGround,
+    backgroundColor: theme.appBackGround,
     flex: 1,
   },
   view: {

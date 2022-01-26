@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import styles from "../constants/styles";
 
 import defaultStyles from "../constants/styles";
-import { colors } from "../constants/theme";
+import ThemeContext from "../common/ThemeContext";
+import { Themes } from "../constants/models/Common";
 
-export default function AppButton({title, onPress, color="white", backgroundColor="primary", style}: Props) {
+export default function AppButton({title, onPress, color="bg", backgroundColor="primary", style}: Props) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
+  
   return (
     <TouchableOpacity
       style={[
         defaultStyles.button,
-        { backgroundColor: colors[backgroundColor] },
+        { backgroundColor: theme[backgroundColor] },
         style
       ]}
       onPress={onPress}
     >
-      <Text style={[styles.text, customStyles.buttonText, {color: colors[color]}]}>{title}</Text>
+      <Text style={[defaultStyles.text, styles.buttonText, {color: theme[color]}]}>{title}</Text>
     </TouchableOpacity>
   )
 }
 
-const customStyles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   buttonText: {
     fontWeight: '700',
     letterSpacing: 1
@@ -30,7 +33,7 @@ const customStyles = StyleSheet.create({
 interface Props {
   title: string, 
   onPress: Function | any, 
-  color?: string,
-  backgroundColor?: string, 
+  color?:  keyof Themes,
+  backgroundColor?: keyof Themes, 
   style?: Object
 }

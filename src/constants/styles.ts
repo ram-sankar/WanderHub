@@ -1,12 +1,6 @@
-import { Platform } from "react-native";
-import { colors, sizes } from "./theme";
+import { sizes } from "./theme";
 
 export default {
-  text: {
-    color: colors.gray4,
-    fontSize: sizes.font,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-  },
   button: {
     borderRadius: 5,
     justifyContent: "center",
