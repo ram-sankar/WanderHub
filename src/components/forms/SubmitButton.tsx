@@ -3,14 +3,14 @@ import { useFormikContext } from "formik";
 
 import AppButton from "../AppButton";
 
-function SubmitButton({ title, style }: Props) {
+function SubmitButton({title, style, ...otherProps }: Props) {
   const { handleSubmit } = useFormikContext();
 
-  return <AppButton title={title} style={style} onPress={handleSubmit} />;
+  return <AppButton title={title} style={style} {...otherProps} onPress={handleSubmit} />;
 }
 
 interface Props {
-  title: string,
+  [otherProps:string]: any,
   style?: Object
 }
 

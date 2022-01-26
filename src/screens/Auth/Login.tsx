@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { ScrollView, StyleSheet, Pressable } from "react-native";
 import * as Yup from "yup";
 
@@ -6,11 +6,13 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { ErrorMessage, Form, FormField, SubmitButton } from "../../components/forms";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import authApi from "../../api/auth"
 import useAuth from "../../auth/useAuth";
 import routes from "../../navigator/routes";
 import { LoginFormData } from "../../constants/models/Auth";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -18,6 +20,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function Login({navigation}: any) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
@@ -51,7 +55,7 @@ function Login({navigation}: any) {
           secureTextEntry
           textContentType="password"
         />
-        <SubmitButton title="LOG IN" style={styles.loginButton}/>
+        <SubmitButton title="LOG IN" style={styles.loginButton} color={'text'}/>
       </Form>
   )
 
@@ -73,7 +77,7 @@ function Login({navigation}: any) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     padding: sizes.padding
   },
@@ -103,12 +107,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   signUp: {
-    color: colors.primary,
+    color: theme.primary,
     fontWeight: '700',
     alignItems: 'flex-start',
   },
   signUpContainer: {
-    // marginTop: 'auto'
     alignItems: 'flex-start',
   }
 });

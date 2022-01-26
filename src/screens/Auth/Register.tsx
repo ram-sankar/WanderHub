@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { ScrollView, StyleSheet, Pressable } from "react-native";
 import * as Yup from "yup";
 
@@ -6,11 +6,13 @@ import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
 import { ErrorMessage, Form, FormField, SubmitButton } from "../../components/forms";
-import { colors, sizes } from "../../constants/theme";
+import { sizes } from "../../constants/theme";
 import userApi from "../../api/user"
 import useAuth from "../../auth/useAuth";
 import routes from "../../navigator/routes";
 import { RegisterFormData } from "../../constants/models/Auth";
+import ThemeContext from "../../common/ThemeContext";
+import { Themes } from "../../constants/models/Common";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(3).label("User Name"),
@@ -19,6 +21,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function Register({navigation}: any) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
   const auth = useAuth();
   const [registerFailed, setRegisterFailed] = useState(null);
   const initialValues= { name: "jonas", email: "jonasK@dark.com", password: "martha_jonas" };
@@ -80,7 +84,7 @@ function Register({navigation}: any) {
   )
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
     padding: sizes.padding
   },
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   login: {
-    color: colors.primary,
+    color: theme.primary,
     fontWeight: '700',
     alignItems: 'flex-start',
   },

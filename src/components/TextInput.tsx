@@ -1,30 +1,33 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-import defaultStyles from "../constants/styles";
-import { colors } from "../constants/theme";
 import AppIcons from "./AppIcons";
+import ThemeContext from "../common/ThemeContext";
+import { Themes } from "../constants/models/Common";
 
 function AppTextInput({ icon, width = "100%", containerStyling, lines=1, style, innerRef, ...otherProps }: Props) {
+  const { theme } = useContext(ThemeContext);
+  const styles = useStyles(theme);
+
   return (
     <View style={[styles.container, containerStyling, { width, height: 30 + lines*18.85 }]}>
       {icon && (
-        <AppIcons Icon="MaterialCommunityIcons" size={20} color={colors.gray2} style={styles.icon}/>
+        <AppIcons Icon="MaterialCommunityIcons" size={20} color={theme.gray2} style={styles.icon}/>
       )}
       <TextInput
         ref={innerRef}
-        placeholderTextColor={colors.gray2}
-        style={[defaultStyles.text, styles.inputStyling, style, { width, height: 20 + lines*18.85 } ]}
+        placeholderTextColor={theme.gray2}
+        style={[styles.inputStyling, style, { width, height: 20 + lines*18.85 } ]}
         {...otherProps}
       />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Themes) => StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
-    color: colors.darkGrey,
+    backgroundColor: theme.bg,
+    color: theme.darkGrey,
     borderRadius: 5,
     flexDirection: "row",
     marginVertical: 10,
@@ -35,6 +38,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   inputStyling: {
+    color: theme.text,
     paddingHorizontal: 20,
     paddingVertical: 10,
     width: '100%',
