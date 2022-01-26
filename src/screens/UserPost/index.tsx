@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { View, StyleSheet, FlatList, Image, Pressable, Dimensions  } from "react-native";
-import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
 
 import AppScreen from "../../components/AppScreen";
@@ -12,6 +11,7 @@ import { userPostHome } from "../../constants/mocks";
 import { UserPostEntity } from "../../constants/models/UserPost";
 import { Themes } from "../../constants/models/Common";
 import ThemeContext from "../../common/ThemeContext";
+import AppIcons from "../../components/AppIcons";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -56,9 +56,9 @@ function UserPost() {
             />
             <AppText style={styles.ownerName}>{item.ownerName}</AppText>
             <View style={styles.likesContainer}>
-              <Ionicons style={styles.likesIcon} name="heart-outline" size={16} />
+              <AppIcons Icon="Ionicons" style={styles.likesIcon} name="heart-outline" size={16} color={theme.gray5}/>
               <AppText>{item.likes}</AppText>
-              <FontAwesome5 style={styles.likesIcon} name="eye" size={16} />
+              <AppIcons Icon="FontAwesome5" style={styles.likesIcon} name="eye" size={16} color={theme.gray5}/>
               <AppText>{item.views}</AppText>
             </View>
           </View>

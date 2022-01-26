@@ -54,7 +54,7 @@ function Profile() {
     <AppScreen style={styles.container}>
       <View style={styles.topSection}>
       <Pressable onPress={() => navigation?.navigate(routes.SETTINGS)} style={styles.settings}>
-        <AppIcons Icon="Ionicons" name="ios-settings" size={24}/>
+        <AppIcons Icon="Ionicons" name="ios-settings" size={24} color={theme.gray} />
       </Pressable>
         <AppIcons Icon="MaterialCommunityIcons" name="account" size={iconSize} style={styles.profileIcon} color={theme.bg}/>
         <AppText style={styles.username}>{profileDetails.name}</AppText>

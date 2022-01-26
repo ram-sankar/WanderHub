@@ -14,7 +14,7 @@ import authStorage from "./src/auth/storage";
 export default function App() {
   const [user, setUser] = useState('');
   const [isReady, setIsReady] = useState(false);
-  const [theme, setTheme] = useState<Themes>(DefaultColor.dark);
+  const [theme, setTheme] = useState<Themes>(DefaultColor.light);
 
   const restoreUser = async (): Promise<void> => {
     const user = await authStorage.getUser()
@@ -25,9 +25,11 @@ export default function App() {
   colors = {
     ...colors, 
     primary: theme.primary,
-    background: theme.bg
+    text: theme.text,
+    border: theme.bg,
+    card: theme.bg
   }
-  const NavTheme = {...NavigationTheme, colors: {...NavigationTheme.colors, ...colors}}
+  const NavTheme = {...NavigationTheme, colors}
   
   if(!isReady) return (
     <AppLoading 

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { View, StyleSheet, FlatList, Image, Pressable, Dimensions  } from "react-native";
-import { Ionicons, FontAwesome5  } from "@expo/vector-icons";
 import { NavigationContext } from '@react-navigation/native';
 
 import AppScreen from "../../components/AppScreen";
@@ -13,6 +12,7 @@ import { exploreHome } from "../../constants/mocks";
 import { ExploreEntity } from "../../constants/models/Explore";
 import ThemeContext from "../../common/ThemeContext";
 import { Themes } from "../../constants/models/Common";
+import AppIcons from "../../components/AppIcons";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -63,9 +63,9 @@ function Explore() {
             />
             <AppText style={styles.ownerName}>{item.ownerName}</AppText>
             <View style={styles.likesContainer}>
-              <Ionicons style={styles.likesIcon} name="heart-outline" size={16} />
+              <AppIcons Icon="Ionicons" style={styles.likesIcon} name="heart-outline" size={16} color={theme.gray5}/>
               <AppText>{item.likes}</AppText>
-              <FontAwesome5 style={styles.likesIcon} name="eye" size={16} />
+              <AppIcons Icon="FontAwesome5" style={styles.likesIcon} name="eye" size={16} color={theme.gray5}/>
               <AppText>{item.views}</AppText>
             </View>
           </View>
