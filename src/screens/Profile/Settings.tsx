@@ -1,10 +1,9 @@
 import React, {useContext} from "react";
-import { View, StyleSheet, FlatList, Switch } from "react-native";
+import { View, StyleSheet, ScrollView, Switch } from "react-native";
 
 import AppScreen from "../../components/AppScreen";
 import AppText from "../../components/AppText";
 import BackButton from "../../components/BackButton";
-import { FixMeLater } from "../../constants/models/AddContent";
 import { sizes } from "../../constants/theme";
 import useAuth from './../../auth/useAuth';
 import { Themes } from "../../constants/models/Common";
@@ -20,50 +19,53 @@ function Settings() {
     setTheme?.(theme.isDark ? DefaultColor.light : DefaultColor.dark);
   }
 
-  const settingsList = [
-    {
-      name: 'Dark mode',
-      isTogglePresent: true,
-      defaultValue: theme.isDark,
-      handleChange: onThemeToggle
-    },
-    {
-      name: 'Notification',
-      isTogglePresent: true,
-      defaultValue: true
-    },
-    {name: 'About'},
-    {name: 'Feedback'},
-    {
-      name: 'Logout', 
-      onPress: logOut, 
-    },
-  ]
-
-  const ListItems = ({item}: {item: FixMeLater}) => (
-    <View style={styles.listContent}>
-      <AppText style={styles.listItems} onPress={() => item?.onPress() || null}>
-        {item.name}
-      </AppText>
-      {item.isTogglePresent && 
+  const RenderItems = () => (
+    <>
+      <View style={styles.listContent}>
+        <AppText style={styles.listItems}>
+          Dark mode
+        </AppText>
         <Switch 
-          value={item.defaultValue} 
+          value={theme.isDark} 
           thumbColor={theme.bg}
           trackColor={{
             true: theme.primary
           }}
-          onValueChange={item.handleChange}
-        />}
-    </View>
-  );
+          onValueChange={onThemeToggle}
+        />
+      </View>
 
-  const RenderList = () => (
-    <FlatList
-      data={settingsList}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={ListItems}
-      showsVerticalScrollIndicator={false}
-    />
+      <View style={styles.listContent}>
+        <AppText style={styles.listItems}>
+          Notification
+        </AppText>
+        <Switch 
+          value={true} 
+          thumbColor={theme.bg}
+          trackColor={{
+            true: theme.primary
+          }}
+        />
+      </View>
+
+      <View style={styles.listContent}>
+        <AppText style={styles.listItems}>
+          About
+        </AppText>
+      </View>
+
+      <View style={styles.listContent}>
+        <AppText style={styles.listItems}>
+          Feedback
+        </AppText>
+      </View>
+
+      <View style={styles.listContent}>
+        <AppText style={styles.listItems} onPress={logOut}>
+          Logout
+        </AppText>
+      </View>
+    </>
   );
 
   return (
@@ -72,7 +74,9 @@ function Settings() {
         <BackButton style={styles.backButton}/>
         <AppText style={styles.pageHeading}>Settings</AppText>
       </View>
-      <RenderList />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <RenderItems />
+      </ScrollView>
     </AppScreen>
   )
 }
