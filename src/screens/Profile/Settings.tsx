@@ -9,17 +9,23 @@ import { sizes } from "../../constants/theme";
 import useAuth from './../../auth/useAuth';
 import { Themes } from "../../constants/models/Common";
 import ThemeContext from "../../common/ThemeContext";
+import { colors as DefaultColor} from '../../constants/theme';
 
 function Settings() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const styles = useStyles(theme);
   const { logOut } = useAuth();
+
+  const onThemeToggle = () => {
+    setTheme?.(theme.isDark ? DefaultColor.light : DefaultColor.dark);
+  }
 
   const settingsList = [
     {
       name: 'Dark mode',
       isTogglePresent: true,
-      defaultValue: true
+      defaultValue: theme.isDark,
+      handleChange: onThemeToggle
     },
     {
       name: 'Notification',
@@ -36,7 +42,7 @@ function Settings() {
 
   const ListItems = ({item}: {item: FixMeLater}) => (
     <View style={styles.listContent}>
-      <AppText style={styles.listItems} onPress={() => item?.onPress()}>
+      <AppText style={styles.listItems} onPress={() => item?.onPress() || null}>
         {item.name}
       </AppText>
       {item.isTogglePresent && 
@@ -46,7 +52,7 @@ function Settings() {
           trackColor={{
             true: theme.primary
           }}
-          // onValueChange={item.handleChange}
+          onValueChange={item.handleChange}
         />}
     </View>
   );

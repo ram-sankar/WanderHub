@@ -20,7 +20,8 @@ const colors = {
     lightGreen: '#e1fce4',
     lightGreen2: '#ddffda',
     red: '#ff0054',
-    transparent: '#00000000'
+    transparent: '#00000000',
+    isDark: false
   },
   dark: {
     primary: "#fca311",
@@ -41,7 +42,8 @@ const colors = {
     lightGreen: '#e1fce4',
     lightGreen2: '#ddffda',
     red: '#ff0054',
-    transparent: '#00000000'
+    transparent: '#00000000',
+    isDark: true
   }
 } as Colors;
 

@@ -23,7 +23,8 @@ export interface Themes {
   lightGreen: ColorValue,
   lightGreen2: ColorValue,
   red: ColorValue,
-  transparent: ColorValue
+  transparent: ColorValue,
+  isDark: boolean,
 }
 
 export interface Colors {
